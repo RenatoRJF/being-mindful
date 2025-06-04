@@ -2,9 +2,9 @@
 
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
-import { motion } from 'framer-motion';
-import { PlayIcon, PauseIcon } from '@heroicons/react/24/solid';
+import { PlayIcon, PauseIcon, ArrowPathIcon } from '@heroicons/react/24/solid';
 import { useState, useRef } from 'react';
+import { MotionDiv } from '@/components/motion';
 
 interface EbookPageProps {
   params: {
@@ -13,7 +13,7 @@ interface EbookPageProps {
 }
 
 const HoverCard = ({ children, className = "" }: { children: React.ReactNode, className?: string }) => (
-  <motion.div
+  <MotionDiv
     className={`${className}`}
     whileHover={{ 
       scale: 1.02,
@@ -21,7 +21,7 @@ const HoverCard = ({ children, className = "" }: { children: React.ReactNode, cl
     }}
   >
     {children}
-  </motion.div>
+  </MotionDiv>
 );
 
 const DiscountBadge = ({ discount }: { discount: string }) => (
@@ -72,7 +72,7 @@ const ebook = {
 };
 
 const HoverButton = ({ children, className = "" }: { children: React.ReactNode, className?: string }) => (
-  <motion.button
+  <MotionDiv
     className={`${className}`}
     whileHover={{ 
       scale: 1.02,
@@ -81,13 +81,23 @@ const HoverButton = ({ children, className = "" }: { children: React.ReactNode, 
     whileTap={{ scale: 0.98 }}
   >
     {children}
-  </motion.button>
+  </MotionDiv>
 );
+
+const formatTime = (time: number): string => {
+  const minutes = Math.floor(time / 60);
+  const seconds = Math.floor(time % 60);
+  return `${minutes}:${seconds.toString().padStart(2, '0')}`;
+};
 
 const AudioPlayer = () => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [error, setError] = useState(false);
+  const [currentTime, setCurrentTime] = useState(0);
+  const [duration, setDuration] = useState(0);
+  const [isFinished, setIsFinished] = useState(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
+  const progressBarRef = useRef<HTMLDivElement>(null);
 
   const togglePlay = () => {
     if (audioRef.current) {
@@ -105,31 +115,108 @@ const AudioPlayer = () => {
     }
   };
 
+  const handleReplay = () => {
+    if (audioRef.current) {
+      audioRef.current.currentTime = 0;
+      setCurrentTime(0);
+      setIsFinished(false);
+      const playPromise = audioRef.current.play();
+      if (playPromise !== undefined) {
+        playPromise.catch(() => {
+          setError(true);
+        });
+      }
+      setIsPlaying(true);
+    }
+  };
+
+  const handleTimeUpdate = () => {
+    if (audioRef.current) {
+      setCurrentTime(audioRef.current.currentTime);
+    }
+  };
+
+  const handleLoadedMetadata = () => {
+    if (audioRef.current) {
+      setDuration(audioRef.current.duration);
+    }
+  };
+
+  const handleEnded = () => {
+    setIsPlaying(false);
+    setIsFinished(true);
+  };
+
+  const handleProgressBarClick = (event: React.MouseEvent<HTMLDivElement>) => {
+    if (progressBarRef.current && audioRef.current) {
+      const rect = progressBarRef.current.getBoundingClientRect();
+      const x = event.clientX - rect.left;
+      const percentage = x / rect.width;
+      const newTime = percentage * duration;
+      audioRef.current.currentTime = newTime;
+      setCurrentTime(newTime);
+      setIsFinished(false);
+    }
+  };
+
   return (
-    <div className="mt-6 bg-slate-800/50 rounded-xl p-4 flex items-center gap-4">
-      <button
-        onClick={togglePlay}
-        className="flex-shrink-0 w-12 h-12 bg-gradient-to-r from-amber-500 to-orange-500 rounded-full flex items-center justify-center hover:scale-105 transition-transform"
-      >
-        {isPlaying ? (
-          <PauseIcon className="w-6 h-6 text-white" />
-        ) : (
-          <PlayIcon className="w-6 h-6 text-white" />
-        )}
-      </button>
-      <div className="flex-1">
-        <h3 className="text-sm font-medium text-amber-400">PRÉVIA EM ÁUDIO</h3>
-        {error ? (
-          <p className="text-sm text-amber-200">Áudio em breve disponível</p>
-        ) : (
-          <p className="text-sm text-slate-300">Ouça uma introdução do conteúdo</p>
-        )}
+    <div className="mt-6 bg-slate-800/50 rounded-xl p-4 space-y-4">
+      <div className="flex items-center gap-4">
+        <button
+          onClick={isFinished ? handleReplay : togglePlay}
+          className="flex-shrink-0 w-12 h-12 bg-gradient-to-r from-amber-500 to-orange-500 rounded-full flex items-center justify-center hover:scale-105 transition-transform"
+        >
+          {isFinished ? (
+            <ArrowPathIcon className="w-6 h-6 text-white" />
+          ) : isPlaying ? (
+            <PauseIcon className="w-6 h-6 text-white" />
+          ) : (
+            <PlayIcon className="w-6 h-6 text-white" />
+          )}
+        </button>
+        <div className="flex-1">
+          <h3 className="text-sm font-medium text-amber-400">PRÉVIA EM ÁUDIO</h3>
+          {error ? (
+            <p className="text-sm text-amber-200">Erro ao carregar o áudio</p>
+          ) : isFinished ? (
+            <p className="text-sm text-slate-300">Clique para ouvir novamente</p>
+          ) : (
+            <p className="text-sm text-slate-300">Ouça uma introdução do conteúdo</p>
+          )}
+        </div>
       </div>
+
+      {/* Progress Bar */}
+      <div className="space-y-2">
+        <div 
+          ref={progressBarRef}
+          className="h-1.5 bg-slate-700 rounded-full overflow-hidden cursor-pointer relative"
+          onClick={handleProgressBarClick}
+        >
+          <div 
+            className="absolute top-0 left-0 h-full bg-gradient-to-r from-amber-500 to-orange-500 rounded-full transition-all duration-100"
+            style={{ width: `${(currentTime / duration) * 100}%` }}
+          />
+          <div 
+            className="absolute top-1/2 -translate-y-1/2"
+            style={{ left: `${(currentTime / duration) * 100}%` }}
+          >
+            <div className="w-3 h-3 bg-white rounded-full shadow-lg -ml-1.5 opacity-0 group-hover:opacity-100 transition-opacity" />
+          </div>
+        </div>
+        <div className="flex justify-between text-xs text-slate-400">
+          <span>{formatTime(currentTime)}</span>
+          <span>{formatTime(duration)}</span>
+        </div>
+      </div>
+
       <audio
         ref={audioRef}
-        src="/podcast-preview.mp3"
+        src="/audios/podcast__7_passos_para_uma_vida_bemsucedida.mp3"
         onError={() => setError(true)}
-        onEnded={() => setIsPlaying(false)}
+        onEnded={handleEnded}
+        onTimeUpdate={handleTimeUpdate}
+        onLoadedMetadata={handleLoadedMetadata}
         className="hidden"
       />
     </div>
@@ -150,7 +237,7 @@ export default function EbookPage({ params }: EbookPageProps) {
             {/* Book Cover - Shown first on mobile */}
             <div className="w-full order-1 lg:order-2 lg:w-1/2">
               <div className="relative max-w-[280px] mx-auto sm:max-w-md lg:max-w-none">
-                <motion.div 
+                <MotionDiv 
                   className="relative rounded-2xl p-4 flex items-center justify-center"
                   animate={{
                     y: [0, -4, 0]
@@ -170,7 +257,7 @@ export default function EbookPage({ params }: EbookPageProps) {
                     priority
                     quality={100}
                   />
-                </motion.div>
+                </MotionDiv>
                 <AudioPlayer />
               </div>
             </div>
@@ -292,8 +379,10 @@ export default function EbookPage({ params }: EbookPageProps) {
           <div className="relative">
             <div className="relative bg-gradient-to-br from-slate-800/50 to-slate-900/50 rounded-2xl p-6 lg:p-12">
               <div className="flex flex-col items-center gap-6 text-center md:flex-row md:gap-12 md:text-left">
-                <div className="w-32 h-32 rounded-full bg-gradient-to-r from-amber-500 to-orange-500 flex items-center justify-center text-2xl font-bold shadow-xl shadow-amber-500/25 lg:w-48 lg:h-48 lg:text-3xl">
-                  BM
+                <div className="w-32 h-32 rounded-xl bg-gradient-to-br from-slate-900 to-slate-800 flex items-center justify-center shadow-lg lg:w-48 lg:h-48">
+                  <span className="font-[--font-fraunces] text-4xl font-bold bg-gradient-to-br from-white via-amber-100 to-amber-200 text-transparent bg-clip-text tracking-tighter lg:text-6xl">
+                    BM
+                  </span>
                 </div>
                 <div className="flex-1">
                   <div className="mb-3">
