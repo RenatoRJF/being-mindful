@@ -4,6 +4,8 @@ import "./globals.css";
 import { Navigation } from "@/components/Navigation";
 import Analytics from "@/components/Analytics";
 import { Footer } from "@/components/Footer";
+import { ScrollToTop } from "@/components/ScrollToTop";
+import { LiveVisitors } from "@/components/LiveVisitors";
 import Script from "next/script";
 import { GA_MEASUREMENT_ID } from "@/lib/gtag";
 
@@ -78,8 +80,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe>`,
           <div className="flex-grow">
             {children}
           </div>
-          <Footer />
+          <div className="relative">
+            <Footer />
+            <LiveVisitors />
+          </div>
         </div>
+        <ScrollToTop />
       </body>
     </html>
   );

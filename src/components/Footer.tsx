@@ -47,7 +47,7 @@ export function Footer() {
                     <input
                       type="email"
                       placeholder="Seu e-mail aqui"
-                      className="w-full px-4 py-2 rounded-lg bg-slate-800/50 border border-slate-700 text-white placeholder:text-slate-500 focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500"
+                      className="w-full px-4 py-2 rounded-lg bg-slate-800/50 border border-slate-700/50 text-white placeholder:text-slate-500 focus:outline-none focus:border-amber-500/80 focus:ring-1 focus:ring-amber-500/30 [transition:border-color_0.2s_ease-out,box-shadow_0.2s_ease-out]"
                       required
                     />
                     <button
