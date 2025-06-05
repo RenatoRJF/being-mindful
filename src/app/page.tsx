@@ -1,13 +1,19 @@
 import { AnimatedLogo } from "@/components/AnimatedLogo";
 import { AnimatedText } from "@/components/AnimatedText";
 import { AnimatedButton } from "@/components/AnimatedButton";
+import { StatsSection } from "@/components/StatsSection";
+import { ScrollToTop } from "@/components/ScrollToTop";
+import { AnimatedSection } from "@/components/AnimatedSection";
 import { Footer } from '@/components/Footer';
 
 export default function Home() {
   return (
     <main className="min-h-screen flex flex-col bg-[#0B1221]">
       <div className="flex-grow">
-        <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
+        <AnimatedSection 
+          className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]"
+          direction="up"
+        >
           <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
             <AnimatedLogo />
             
@@ -81,9 +87,13 @@ export default function Home() {
               Go to nextjs.org →
             </AnimatedButton>
           </AnimatedText>
-        </div>
+        </AnimatedSection>
 
-        <section className="relative">
+        <AnimatedSection 
+          delay={0.2} 
+          className="relative"
+          direction="down"
+        >
           <div className="absolute inset-0 bg-gradient-to-b from-[#0B1221] via-slate-900/50 to-slate-900/80" />
           
           <div className="relative py-16 md:py-32">
@@ -163,11 +173,19 @@ export default function Home() {
               </div>
             </div>
           </div>
-        </section>
+        </AnimatedSection>
+
+        <AnimatedSection 
+          delay={0.3}
+          direction="up"
+        >
+          <StatsSection />
+        </AnimatedSection>
 
         <div className="h-16 md:h-24 bg-gradient-to-b from-slate-900/80 to-[#0B1221]"></div>
       </div>
       <Footer />
+      <ScrollToTop />
     </main>
   );
 }
