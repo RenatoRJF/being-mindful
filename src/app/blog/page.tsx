@@ -2,20 +2,30 @@
 
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { blogPosts } from '@/lib/blog-data';
+import { blogPosts, calculateReadingTime } from '@/lib/blog-data';
+import { ClockIcon } from '@heroicons/react/24/outline';
 
 export default function BlogPage() {
   return (
     <div className="min-h-screen bg-[#0B1221] pt-32 pb-16">
       <div className="max-w-4xl mx-auto px-6">
         <motion.h1 
-          className="text-4xl font-bold mb-8 bg-gradient-to-r from-white via-amber-100 to-amber-200 text-transparent bg-clip-text"
+          className="text-4xl font-bold mb-4 bg-gradient-to-r from-white via-amber-100 to-amber-200 text-transparent bg-clip-text"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
-          Blog
+          Ideias para Mudar sua Vida e seu Negócio
         </motion.h1>
+
+        <motion.p
+          className="text-lg text-slate-300 mb-12 leading-relaxed max-w-3xl"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+        >
+          Descubra ideias práticas, reflexões profundas e passos reais para transformar sua mentalidade, criar seu próprio negócio e viver de forma livre, consciente e bem-sucedida.
+        </motion.p>
 
         <div className="space-y-8">
           {blogPosts.map((post, index) => (
@@ -28,6 +38,10 @@ export default function BlogPage() {
             >
               <Link href={`/blog/${post.slug}`}>
                 <div className="bg-slate-800/50 rounded-xl p-6 hover:bg-slate-800/70 transition-all duration-300">
+                  <div className="flex items-center gap-2 text-amber-400/80 text-sm mb-3">
+                    <ClockIcon className="w-4 h-4" />
+                    <span>{calculateReadingTime(post.content)} min de leitura</span>
+                  </div>
                   <h2 className="text-2xl font-semibold mb-4 text-white group-hover:text-amber-400 transition-colors">
                     {post.title}
                   </h2>
