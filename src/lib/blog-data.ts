@@ -118,6 +118,12 @@ export const blogPosts: BlogPost[] = [
       text: 'O maior risco não é tentar e falhar, mas não tentar e se arrepender.',
       author: 'Being Mindful'
     },
+    podcast: {
+      episodeId: '001',
+      title: 'Não Pense Demais, Apenas Comece - O Poder da Ação',
+      duration: '15:30',
+      audioUrl: '/audios/podcast__7_passos_para_uma_vida_bemsucedida.mp3'
+    },
     sections: [
       {
         type: 'introduction',
@@ -210,6 +216,12 @@ export const blogPosts: BlogPost[] = [
     quote: {
       text: 'O dinheiro é um meio, mas a ação é o destino.',
       author: 'Being Mindful'
+    },
+    podcast: {
+      episodeId: '002',
+      title: 'Começar Sem Dinheiro - Estratégias Práticas',
+      duration: '18:45',
+      audioUrl: '/audios/podcast__7_passos_para_uma_vida_bemsucedida.mp3'
     },
     sections: [
       {
@@ -363,6 +375,12 @@ export const blogPosts: BlogPost[] = [
       text: 'Cada página virada é um investimento no seu crescimento, na sua capacidade de inovar e, em última instância, no sucesso do seu empreendimento.',
       author: 'Being Mindful'
     },
+    podcast: {
+      episodeId: '003',
+      title: 'Ler Para Liderar - O Hábito que Transforma Empreendedores',
+      duration: '22:15',
+      audioUrl: '/audios/podcast__7_passos_para_uma_vida_bemsucedida.mp3'
+    },
     sections: [
       {
         type: 'introduction',
@@ -432,12 +450,18 @@ export const blogPosts: BlogPost[] = [
     }
   },
   {
-    slug: '5-crencas-que-impedem-voce-de-comecar',
-    title: 'As 5 Crenças que Impedem Você de Começar o Seu Próprio Negócio Online',
+    slug: '5-crencas',
+    title: '5 Crenças que Estão Te Impedindo de Começar',
     author: 'Being Mindful',
     quote: {
-      text: 'As correntes da mente são invisíveis — mas mais fortes do que qualquer parede.',
+      text: 'As crenças são como lentes. Se elas estiverem embaçadas, sua visão estará distorcida.',
       author: 'Being Mindful'
+    },
+    podcast: {
+      episodeId: '004',
+      title: '5 Crenças Limitantes - Como Identificar e Superar',
+      duration: '20:00',
+      audioUrl: '/audios/podcast__7_passos_para_uma_vida_bemsucedida.mp3'
     },
     sections: [
       {
@@ -505,6 +529,12 @@ export const blogPosts: BlogPost[] = [
     quote: {
       text: 'Você não precisa ver a escada inteira. Apenas dê o primeiro passo.',
       author: 'Martin Luther King Jr.'
+    },
+    podcast: {
+      episodeId: '005',
+      title: 'Visão Empreendedora - O Começo de Toda Transformação',
+      duration: '17:45',
+      audioUrl: '/audios/podcast__7_passos_para_uma_vida_bemsucedida.mp3'
     },
     sections: [
       {
@@ -596,6 +626,12 @@ export const blogPosts: BlogPost[] = [
       text: 'Eu não falhei mil vezes. A lâmpada foi uma invenção com mil passos.',
       author: 'Thomas Edison'
     },
+    podcast: {
+      episodeId: '006',
+      title: 'Só Falha Quem NÃO Se Arrisca a Tentar - A Importância do Risco',
+      duration: '19:30',
+      audioUrl: '/audios/podcast__7_passos_para_uma_vida_bemsucedida.mp3'
+    },
     sections: [
       {
         type: 'introduction',
@@ -673,6 +709,12 @@ export const blogPosts: BlogPost[] = [
     quote: {
       text: 'A leitura é uma das melhores formas de desenvolver essa mentalidade.',
       author: 'Being Mindful'
+    },
+    podcast: {
+      episodeId: '007',
+      title: 'Aprenda a Pensar Como um Empreendedor - A Importância da Leitura',
+      duration: '16:45',
+      audioUrl: '/audios/podcast__7_passos_para_uma_vida_bemsucedida.mp3'
     },
     sections: [
       {
