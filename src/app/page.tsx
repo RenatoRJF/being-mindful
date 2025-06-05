@@ -4,7 +4,6 @@ import { AnimatedButton } from "@/components/AnimatedButton";
 import { StatsSection } from "@/components/StatsSection";
 import { ScrollToTop } from "@/components/ScrollToTop";
 import { AnimatedSection } from "@/components/AnimatedSection";
-import { Footer } from '@/components/Footer';
 
 export default function Home() {
   return (
@@ -184,7 +183,6 @@ export default function Home() {
 
         <div className="h-16 md:h-24 bg-gradient-to-b from-slate-900/80 to-[#0B1221]"></div>
       </div>
-      <Footer />
       <ScrollToTop />
     </main>
   );

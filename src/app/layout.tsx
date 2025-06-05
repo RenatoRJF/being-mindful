@@ -3,6 +3,7 @@ import { Inter, Fraunces } from "next/font/google";
 import "./globals.css";
 import { Navigation } from "@/components/Navigation";
 import { Analytics } from "@/components/Analytics";
+import { Footer } from "@/components/Footer";
 import Script from "next/script";
 import { GA_MEASUREMENT_ID } from "@/lib/gtag";
 
@@ -73,7 +74,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe>`,
         
         <Analytics />
         <Navigation />
-        {children}
+        <div className="min-h-screen flex flex-col">
+          <div className="flex-grow">
+            {children}
+          </div>
+          <Footer />
+        </div>
       </body>
     </html>
   );
