@@ -42,6 +42,15 @@ function useAudioDurations(posts: BlogPost[]) {
   return durations;
 }
 
+const formatDate = (dateString: string) => {
+  const date = new Date(dateString);
+  return new Intl.DateTimeFormat('pt-BR', {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric'
+  }).format(date);
+};
+
 export default function BlogList({ posts }: { posts: BlogPost[] }) {
   const audioDurations = useAudioDurations(posts);
 
@@ -94,21 +103,26 @@ export default function BlogList({ posts }: { posts: BlogPost[] }) {
               <p className="text-slate-400 line-clamp-3">
                 {getFirstTextContent(post)}
               </p>
-              <div className="mt-4 flex items-center text-amber-400 text-sm font-medium">
-                {post.podcast ? 'Ouvir episódio' : 'Ler mais'}
-                <svg
-                  className="ml-2 w-4 h-4 transform group-hover:translate-x-1 transition-transform"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M9 5l7 7-7 7"
-                  />
-                </svg>
+              <div className="mt-4 flex items-center justify-between">
+                <div className="text-amber-400 text-sm font-medium">
+                  {post.podcast ? 'Ouvir episódio' : 'Ler mais'}
+                  <svg
+                    className="ml-2 w-4 h-4 transform group-hover:translate-x-1 transition-transform inline-block"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M9 5l7 7-7 7"
+                    />
+                  </svg>
+                </div>
+                <div className="text-slate-500 text-sm">
+                  {formatDate(post.publicationDate)}
+                </div>
               </div>
             </div>
           </Link>

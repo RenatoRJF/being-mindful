@@ -470,10 +470,6 @@ export const blogPosts: BlogPost[] = [
     },
     sections: [
       {
-        type: 'main-title',
-        content: 'As 5 Crenças que Impedem Você de Começar o Seu Próprio Negócio Online'
-      },
-      {
         type: 'introduction',
         title: 'Introdução',
         content: 'Você já pensou em começar algo seu na internet, viver de renda online, ter liberdade, fazer o que ama… mas travou antes mesmo de começar?\n\nSe sim, você não está sozinho.\n\nA maioria das pessoas que quer empreender não é impedida pela falta de dinheiro ou tempo — mas por algo mais profundo: as crenças limitantes.'

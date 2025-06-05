@@ -60,9 +60,9 @@ const ebook = {
     }
   ],
   price: {
-    original: 'R$ 12,00',
-    current: 'R$ 7,00',
-    discount: '42%'
+    original: 'R$ 20,00',
+    current: 'R$ 12,00',
+    discount: '40%'
   },
   team: {
     name: 'Time Being Mindful',
@@ -333,6 +333,39 @@ export default function EbookPage({ params }: EbookPageProps) {
                 {ebook.description}
               </p>
 
+              {/* Social Proof */}
+              <div className="space-y-4">
+                <HoverCard className="flex items-center gap-3 bg-gradient-to-r from-amber-500/10 via-orange-500/10 to-amber-500/10 p-4 rounded-xl cursor-pointer border border-amber-500/20">
+                  <div className="flex -space-x-2">
+                    {[1,2,3].map((i) => (
+                      <div key={i} className="w-7 h-7 rounded-full bg-gradient-to-r from-amber-400 to-orange-400 border-2 border-slate-800 sm:w-8 sm:h-8" />
+                    ))}
+                  </div>
+                  <p className="text-sm text-slate-300 lg:text-base">
+                    <span className="text-amber-400 font-semibold">+17.000 pessoas</span> já transformaram suas vidas com este e-book
+                  </p>
+                </HoverCard>
+
+                <div className="grid grid-cols-2 gap-3">
+                  {[
+                    { label: 'Avaliações', value: '4.9/5' },
+                    { label: 'Downloads', value: '17k+' }
+                  ].map((stat, index) => (
+                    <HoverCard 
+                      key={index}
+                      className="bg-slate-800/30 p-3 rounded-lg text-center cursor-pointer"
+                    >
+                      <div className="text-2xl font-bold bg-gradient-to-r from-amber-400 to-orange-400 text-transparent bg-clip-text">
+                        {stat.value}
+                      </div>
+                      <div className="text-xs text-slate-400 mt-1">
+                        {stat.label}
+                      </div>
+                    </HoverCard>
+                  ))}
+                </div>
+              </div>
+
               {/* CTAs */}
               <div className="flex flex-col gap-3 sm:flex-row sm:gap-4">
                 <div className="relative inline-flex">
@@ -360,18 +393,6 @@ export default function EbookPage({ params }: EbookPageProps) {
                   Ver prévia gratuita
                 </HoverButton>
               </div>
-
-              {/* Social Proof */}
-              <HoverCard className="flex items-center gap-3 bg-slate-800/30 p-4 rounded-xl cursor-pointer">
-                <div className="flex -space-x-2">
-                  {[1,2,3].map((i) => (
-                    <div key={i} className="w-7 h-7 rounded-full bg-gradient-to-r from-amber-400 to-orange-400 border-2 border-slate-800 sm:w-8 sm:h-8" />
-                  ))}
-                </div>
-                <p className="text-sm text-slate-300 lg:text-base">
-                  <span className="text-amber-400 font-semibold">+150 pessoas</span> já compraram este e-book esta semana
-                </p>
-              </HoverCard>
             </div>
           </div>
         </div>
