@@ -1,10 +1,27 @@
+'use client';
+
 import { AnimatedLogo } from "@/components/AnimatedLogo";
 import { AnimatedText } from "@/components/AnimatedText";
 import { AnimatedButton } from "@/components/AnimatedButton";
 import { StatsSection } from "@/components/StatsSection";
 import { AnimatedSection } from "@/components/AnimatedSection";
+import { useEffect } from 'react';
 
 export default function Home() {
+  useEffect(() => {
+    // Check if the URL has the quem-somos hash
+    if (window.location.hash === '#quem-somos') {
+      // Get the element and scroll to it
+      const element = document.getElementById('quem-somos');
+      if (element) {
+        // Use setTimeout to ensure the element is rendered
+        setTimeout(() => {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }, 100);
+      }
+    }
+  }, []); // Empty dependency array means this runs once on mount
+
   return (
     <main className="min-h-screen flex flex-col bg-[#0B1221]">
       <div className="flex-grow">
@@ -94,7 +111,7 @@ export default function Home() {
         >
           <div className="absolute inset-0 bg-gradient-to-b from-[#0B1221] via-slate-900/50 to-slate-900/80" />
           
-          <div className="relative py-16 md:py-32">
+          <div id="quem-somos" className="relative py-16 md:py-32">
             <div className="max-w-6xl mx-auto px-6">
               <div className="max-w-3xl mx-auto mb-12 md:mb-20">
                 <h2 className="text-3xl font-bold mb-8 md:mb-12 bg-gradient-to-r from-white via-amber-100 to-amber-200 text-transparent bg-clip-text text-center">
