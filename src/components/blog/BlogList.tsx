@@ -2,11 +2,17 @@
 
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { ClockIcon } from '@heroicons/react/24/outline';
+import { ClockIcon, PlayIcon } from '@heroicons/react/24/outline';
 import { calculateReadingTime } from '@/lib/blog-data';
 import type { BlogPost } from '@/lib/blog-data';
 
 export default function BlogList({ posts }: { posts: BlogPost[] }) {
+  // Helper function to get the first text content from sections
+  const getFirstTextContent = (post: BlogPost) => {
+    const firstContentSection = post.sections.find(section => section.content);
+    return firstContentSection?.content || '';
+  };
+
   return (
     <div className="space-y-8">
       {posts.map((post, index) => (
@@ -19,9 +25,17 @@ export default function BlogList({ posts }: { posts: BlogPost[] }) {
         >
           <Link href={`/blog/${post.slug}`}>
             <div className="bg-slate-800/50 rounded-xl p-6 hover:bg-slate-800/70 transition-all duration-300">
-              <div className="flex items-center gap-2 text-amber-400/80 text-sm mb-3">
-                <ClockIcon className="w-4 h-4" />
-                <span>{calculateReadingTime(post.content)} min de leitura</span>
+              <div className="flex items-center gap-4 mb-3">
+                <div className="flex items-center gap-2 text-amber-400/80 text-sm">
+                  <ClockIcon className="w-4 h-4" />
+                  <span>{calculateReadingTime(post.sections.map(section => section.content || '').filter(Boolean))} min de leitura</span>
+                </div>
+                {post.podcast && (
+                  <div className="flex items-center gap-2 text-amber-400/80 text-sm">
+                    <PlayIcon className="w-4 h-4" />
+                    <span>{post.podcast.duration}</span>
+                  </div>
+                )}
               </div>
               <h2 className="text-2xl font-semibold mb-4 text-white group-hover:text-amber-400 transition-colors">
                 {post.title}
@@ -33,10 +47,10 @@ export default function BlogList({ posts }: { posts: BlogPost[] }) {
                 </blockquote>
               )}
               <p className="text-slate-400 line-clamp-3">
-                {post.content[0]}
+                {getFirstTextContent(post)}
               </p>
               <div className="mt-4 flex items-center text-amber-400 text-sm font-medium">
-                Ler mais
+                {post.podcast ? 'Ouvir episódio' : 'Ler mais'}
                 <svg
                   className="ml-2 w-4 h-4 transform group-hover:translate-x-1 transition-transform"
                   fill="none"

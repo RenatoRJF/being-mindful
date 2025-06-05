@@ -1,6 +1,11 @@
 import { notFound } from 'next/navigation';
 import { blogPosts } from '@/lib/blog-data';
-import { AnimatedBlogContent } from '@/components/blog/AnimatedBlogContent';
+import dynamic from 'next/dynamic';
+
+// Dynamically import the blog content component with no SSR
+const AnimatedBlogContent = dynamic(() => import('@/components/blog/AnimatedBlogContent').then(mod => mod.default), {
+  ssr: false
+});
 
 export default function BlogPostPage({ params }: { params: { slug: string } }) {
   const post = blogPosts.find((p) => p.slug === params.slug);

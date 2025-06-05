@@ -4,6 +4,7 @@ import "./globals.css";
 import { Navigation } from "@/components/Navigation";
 import Analytics from "@/components/Analytics";
 import { Footer } from "@/components/Footer";
+import { ScrollToTop } from "@/components/ScrollToTop";
 import Script from "next/script";
 import { GA_MEASUREMENT_ID } from "@/lib/gtag";
 
@@ -80,6 +81,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe>`,
           </div>
           <Footer />
         </div>
+        <ScrollToTop />
       </body>
     </html>
   );
