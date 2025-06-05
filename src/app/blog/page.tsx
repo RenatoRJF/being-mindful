@@ -27,9 +27,12 @@ export default function BlogPage() {
   return (
     <div className="min-h-screen bg-[#0B1221] pt-32 pb-16">
       <div className="max-w-4xl mx-auto px-6">
-        <h1 className="text-4xl font-bold mb-12 bg-gradient-to-r from-white via-amber-100 to-amber-200 text-transparent bg-clip-text">
-          Blog
+        <h1 className="text-4xl font-bold mb-4 bg-gradient-to-r from-white via-amber-100 to-amber-200 text-transparent bg-clip-text">
+          Blog: Descubra, Aprenda, Cresça
         </h1>
+        <p className="text-lg text-slate-300 mb-12 leading-relaxed max-w-3xl">
+          Descubra ideias práticas, reflexões profundas e passos reais para transformar sua mentalidade, criar seu próprio negócio e viver de forma livre, consciente e bem-sucedida.
+        </p>
         <Suspense fallback={<BlogListLoading />}>
           <BlogList posts={blogPosts} />
         </Suspense>
