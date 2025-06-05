@@ -72,6 +72,7 @@ export type BlogPost = {
   slug: string;
   title: string;
   author: string;
+  publicationDate: string; // ISO date string (YYYY-MM-DD)
   quote?: {
     text: string;
     author: string;
@@ -114,6 +115,7 @@ export const blogPosts: BlogPost[] = [
     slug: 'nao-pense-demais-apenas-comece',
     title: 'Não Pense Demais, Apenas Comece',
     author: 'Being Mindful',
+    publicationDate: '2024-03-15',
     quote: {
       text: 'O maior risco não é tentar e falhar, mas não tentar e se arrepender.',
       author: 'Being Mindful'
@@ -213,6 +215,7 @@ export const blogPosts: BlogPost[] = [
     slug: 'comecar-sem-dinheiro',
     title: 'Começar Sem Dinheiro: Por Que Planejamento e Atitude Valem Mais que Capital Inicial',
     author: 'Being Mindful',
+    publicationDate: '2024-03-10',
     quote: {
       text: 'O dinheiro é um meio, mas a ação é o destino.',
       author: 'Being Mindful'
@@ -371,6 +374,7 @@ export const blogPosts: BlogPost[] = [
     slug: 'ler-para-liderar',
     title: 'Ler Para Liderar: Por Que Todo Empreendedor Precisa Devorar Livros',
     author: 'Being Mindful',
+    publicationDate: '2024-03-05',
     quote: {
       text: 'Cada página virada é um investimento no seu crescimento, na sua capacidade de inovar e, em última instância, no sucesso do seu empreendimento.',
       author: 'Being Mindful'
@@ -453,6 +457,7 @@ export const blogPosts: BlogPost[] = [
     slug: '5-crencas',
     title: '5 Crenças que Estão Te Impedindo de Começar',
     author: 'Being Mindful',
+    publicationDate: '2024-02-28',
     quote: {
       text: 'As crenças são como lentes. Se elas estiverem embaçadas, sua visão estará distorcida.',
       author: 'Being Mindful'
@@ -526,6 +531,7 @@ export const blogPosts: BlogPost[] = [
     slug: 'visao-empreendedora-e-iniciativa',
     title: 'Visão Empreendedora e Iniciativa: O Começo de Toda Transformação',
     author: 'Being Mindful',
+    publicationDate: '2024-02-20',
     quote: {
       text: 'Você não precisa ver a escada inteira. Apenas dê o primeiro passo.',
       author: 'Martin Luther King Jr.'
@@ -622,6 +628,7 @@ export const blogPosts: BlogPost[] = [
     slug: 'so-falha-quem-nao-se-ariska',
     title: 'Só Falha Quem NÃO Se Arrisca a Tentar',
     author: 'Being Mindful',
+    publicationDate: '2024-02-15',
     quote: {
       text: 'Eu não falhei mil vezes. A lâmpada foi uma invenção com mil passos.',
       author: 'Thomas Edison'
@@ -706,6 +713,7 @@ export const blogPosts: BlogPost[] = [
     slug: 'aprenda-pensar-como-empreendedor',
     title: 'Aprenda a Pensar Como um Empreendedor',
     author: 'Being Mindful',
+    publicationDate: '2024-02-10',
     quote: {
       text: 'A leitura é uma das melhores formas de desenvolver essa mentalidade.',
       author: 'Being Mindful'

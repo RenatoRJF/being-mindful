@@ -19,6 +19,15 @@ const getSectionIcon = (type: string) => {
   }
 };
 
+const formatDate = (dateString: string) => {
+  const date = new Date(dateString);
+  return new Intl.DateTimeFormat('pt-BR', {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric'
+  }).format(date);
+};
+
 export default function AnimatedBlogContent({ post }: { post: BlogPost }) {
   return (
     <div className="prose prose-invert prose-slate max-w-none">
@@ -53,6 +62,8 @@ export default function AnimatedBlogContent({ post }: { post: BlogPost }) {
         </div>
         <div className="flex items-center gap-4 text-slate-400">
           <span className="text-sm">Por {post.author}</span>
+          <span className="text-sm">•</span>
+          <span className="text-sm">{formatDate(post.publicationDate)}</span>
           <span className="text-sm">•</span>
           <span className="text-sm">Blog</span>
         </div>
