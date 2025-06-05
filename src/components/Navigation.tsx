@@ -3,8 +3,9 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { motion } from 'framer-motion';
+import { Suspense } from 'react';
 
-export function Navigation() {
+function NavigationContent() {
   const pathname = usePathname();
 
   const links = [
@@ -64,5 +65,36 @@ export function Navigation() {
         </div>
       </div>
     </nav>
+  );
+}
+
+// Loading state for navigation
+function NavigationLoading() {
+  return (
+    <nav className="fixed top-0 left-0 right-0 z-40 bg-gradient-to-b from-slate-900/80 to-transparent backdrop-blur-sm">
+      <div className="max-w-screen-xl mx-auto px-4">
+        <div className="flex items-center justify-between h-20">
+          <div className="flex-shrink-0">
+            <div className="w-8 h-8 bg-slate-700 rounded animate-pulse" />
+          </div>
+          <ul className="flex items-center gap-8">
+            {[1, 2, 3].map((i) => (
+              <li key={i}>
+                <div className="w-16 h-4 bg-slate-700 rounded animate-pulse" />
+              </li>
+            ))}
+          </ul>
+          <div className="flex-shrink-0 w-[40px]" />
+        </div>
+      </div>
+    </nav>
+  );
+}
+
+export function Navigation() {
+  return (
+    <Suspense fallback={<NavigationLoading />}>
+      <NavigationContent />
+    </Suspense>
   );
 } 

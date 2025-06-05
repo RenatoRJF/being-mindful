@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Inter, Fraunces } from "next/font/google";
 import "./globals.css";
 import { Navigation } from "@/components/Navigation";
-import { Analytics } from "@/components/Analytics";
+import Analytics from "@/components/Analytics";
 import { Footer } from "@/components/Footer";
 import Script from "next/script";
 import { GA_MEASUREMENT_ID } from "@/lib/gtag";
