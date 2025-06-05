@@ -3,8 +3,9 @@
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
 import { PlayIcon, PauseIcon, ArrowPathIcon } from '@heroicons/react/24/solid';
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { MotionDiv } from '@/components/motion';
+import { event as gaEvent } from '@/lib/gtag';
 
 interface EbookPageProps {
   params: {
@@ -71,7 +72,7 @@ const ebook = {
   coverImage: '/ebooks/7-passos-para-uma-vida-bem-sucedida.png'
 };
 
-const HoverButton = ({ children, className = "" }: { children: React.ReactNode, className?: string }) => (
+const HoverButton = ({ children, className = "", onClick }: { children: React.ReactNode, className?: string, onClick?: () => void }) => (
   <MotionDiv
     className={`${className}`}
     whileHover={{ 
@@ -79,6 +80,7 @@ const HoverButton = ({ children, className = "" }: { children: React.ReactNode, 
       transition: { duration: 0.2 }
     }}
     whileTap={{ scale: 0.98 }}
+    onClick={onClick}
   >
     {children}
   </MotionDiv>
@@ -103,6 +105,12 @@ const AudioPlayer = () => {
     if (audioRef.current) {
       if (isPlaying) {
         audioRef.current.pause();
+        gaEvent({
+          action: 'audio_pause',
+          category: 'Audio',
+          label: '7 Passos para uma Vida Bem-sucedida',
+          value: Math.floor(currentTime)
+        });
       } else {
         const playPromise = audioRef.current.play();
         if (playPromise !== undefined) {
@@ -110,6 +118,12 @@ const AudioPlayer = () => {
             setError(true);
           });
         }
+        gaEvent({
+          action: 'audio_play',
+          category: 'Audio',
+          label: '7 Passos para uma Vida Bem-sucedida',
+          value: Math.floor(currentTime)
+        });
       }
       setIsPlaying(!isPlaying);
     }
@@ -127,6 +141,11 @@ const AudioPlayer = () => {
         });
       }
       setIsPlaying(true);
+      gaEvent({
+        action: 'audio_replay',
+        category: 'Audio',
+        label: '7 Passos para uma Vida Bem-sucedida'
+      });
     }
   };
 
@@ -145,6 +164,12 @@ const AudioPlayer = () => {
   const handleEnded = () => {
     setIsPlaying(false);
     setIsFinished(true);
+    gaEvent({
+      action: 'audio_complete',
+      category: 'Audio',
+      label: '7 Passos para uma Vida Bem-sucedida',
+      value: Math.floor(duration)
+    });
   };
 
   const handleProgressBarClick = (event: React.MouseEvent<HTMLDivElement>) => {
@@ -156,6 +181,12 @@ const AudioPlayer = () => {
       audioRef.current.currentTime = newTime;
       setCurrentTime(newTime);
       setIsFinished(false);
+      gaEvent({
+        action: 'audio_seek',
+        category: 'Audio',
+        label: '7 Passos para uma Vida Bem-sucedida',
+        value: Math.floor(newTime)
+      });
     }
   };
 
@@ -224,6 +255,30 @@ const AudioPlayer = () => {
 };
 
 export default function EbookPage({ params }: EbookPageProps) {
+  useEffect(() => {
+    // Track page view duration
+    const startTime = Date.now();
+    
+    return () => {
+      const duration = Math.floor((Date.now() - startTime) / 1000); // duration in seconds
+      gaEvent({
+        action: 'page_duration',
+        category: 'Page',
+        label: '7 Passos para uma Vida Bem-sucedida',
+        value: duration
+      });
+    };
+  }, []);
+
+  const handlePurchaseClick = () => {
+    gaEvent({
+      action: 'purchase_click',
+      category: 'Purchase',
+      label: '7 Passos para uma Vida Bem-sucedida',
+      value: 47 // Price in BRL
+    });
+  };
+
   if (params.slug !== ebook.slug) {
     notFound();
   }
@@ -282,14 +337,26 @@ export default function EbookPage({ params }: EbookPageProps) {
               <div className="flex flex-col gap-3 sm:flex-row sm:gap-4">
                 <div className="relative inline-flex">
                   <DiscountBadge discount={ebook.price.discount} />
-                  <HoverButton className="w-full px-6 py-4 bg-gradient-to-r from-amber-500 to-orange-500 rounded-xl text-base font-semibold sm:w-auto lg:text-lg">
+                  <HoverButton 
+                    className="w-full px-6 py-4 bg-gradient-to-r from-amber-500 to-orange-500 rounded-xl text-base font-semibold sm:w-auto lg:text-lg"
+                    onClick={handlePurchaseClick}
+                  >
                     <span className="flex flex-col items-center sm:items-start">
                       <span className="text-sm line-through opacity-75">{ebook.price.original}</span>
                       <span className="text-lg">Garantir por {ebook.price.current}</span>
                     </span>
                   </HoverButton>
                 </div>
-                <HoverButton className="w-full px-6 py-4 bg-slate-800/50 rounded-xl text-base font-semibold sm:w-auto lg:text-lg">
+                <HoverButton 
+                  className="w-full px-6 py-4 bg-slate-800/50 rounded-xl text-base font-semibold sm:w-auto lg:text-lg"
+                  onClick={() => {
+                    gaEvent({
+                      action: 'preview_click',
+                      category: 'Preview',
+                      label: '7 Passos para uma Vida Bem-sucedida'
+                    });
+                  }}
+                >
                   Ver prévia gratuita
                 </HoverButton>
               </div>
