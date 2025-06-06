@@ -12,19 +12,22 @@ interface AnimatedButtonProps {
     src: string;
     alt: string;
   };
+  onClick?: (e: React.MouseEvent) => void;
 }
 
 export function AnimatedButton({ 
   href, 
   children, 
   variant = 'primary',
-  icon 
+  icon,
+  onClick
 }: AnimatedButtonProps) {
   const isPrimary = variant === 'primary';
 
   return (
     <motion.a
       href={href}
+      onClick={onClick}
       target="_blank"
       rel="noopener noreferrer"
       className={`
