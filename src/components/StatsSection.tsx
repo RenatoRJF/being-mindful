@@ -6,7 +6,7 @@ import { AnimatedStats } from './AnimatedStats';
 export function StatsSection() {
   return (
     <section className="relative py-16 md:py-24 overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-b from-[#0B1221] via-slate-900/50 to-[#0B1221]" />
+      <div className="absolute inset-0 bg-gradient-to-b from-[#0B1221] via-[#0B1221]/50 to-[#0B1221]" />
       
       <div className="max-w-6xl mx-auto px-6 relative">
         <div className="max-w-3xl mx-auto text-center">

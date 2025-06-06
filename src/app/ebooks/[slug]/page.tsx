@@ -1,11 +1,13 @@
 'use client';
 
+import { useEffect } from 'react';
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
-import { PlayIcon, PauseIcon, ArrowPathIcon } from '@heroicons/react/24/solid';
-import { useState, useRef, useEffect } from 'react';
-import { MotionDiv } from '@/components/motion';
+import { motion } from 'framer-motion';
 import { event as gaEvent } from '@/lib/gtag';
+import { PodcastPlayer } from '@/components/blog/PodcastPlayer';
+
+const MotionDiv = motion.div;
 
 interface EbookPageProps {
   params: {
@@ -86,171 +88,14 @@ const HoverButton = ({ children, className = "", onClick }: { children: React.Re
   </MotionDiv>
 );
 
-const formatTime = (time: number): string => {
-  const minutes = Math.floor(time / 60);
-  const seconds = Math.floor(time % 60);
-  return `${minutes}:${seconds.toString().padStart(2, '0')}`;
-};
-
 const AudioPlayer = () => {
-  const [isPlaying, setIsPlaying] = useState(false);
-  const [error, setError] = useState(false);
-  const [currentTime, setCurrentTime] = useState(0);
-  const [duration, setDuration] = useState(0);
-  const [isFinished, setIsFinished] = useState(false);
-  const audioRef = useRef<HTMLAudioElement | null>(null);
-  const progressBarRef = useRef<HTMLDivElement>(null);
-
-  const togglePlay = () => {
-    if (audioRef.current) {
-      if (isPlaying) {
-        audioRef.current.pause();
-        gaEvent({
-          action: 'audio_pause',
-          category: 'Audio',
-          label: '7 Passos para uma Vida Bem-sucedida',
-          value: Math.floor(currentTime)
-        });
-      } else {
-        const playPromise = audioRef.current.play();
-        if (playPromise !== undefined) {
-          playPromise.catch(() => {
-            setError(true);
-          });
-        }
-        gaEvent({
-          action: 'audio_play',
-          category: 'Audio',
-          label: '7 Passos para uma Vida Bem-sucedida',
-          value: Math.floor(currentTime)
-        });
-      }
-      setIsPlaying(!isPlaying);
-    }
-  };
-
-  const handleReplay = () => {
-    if (audioRef.current) {
-      audioRef.current.currentTime = 0;
-      setCurrentTime(0);
-      setIsFinished(false);
-      const playPromise = audioRef.current.play();
-      if (playPromise !== undefined) {
-        playPromise.catch(() => {
-          setError(true);
-        });
-      }
-      setIsPlaying(true);
-      gaEvent({
-        action: 'audio_replay',
-        category: 'Audio',
-        label: '7 Passos para uma Vida Bem-sucedida'
-      });
-    }
-  };
-
-  const handleTimeUpdate = () => {
-    if (audioRef.current) {
-      setCurrentTime(audioRef.current.currentTime);
-    }
-  };
-
-  const handleLoadedMetadata = () => {
-    if (audioRef.current) {
-      setDuration(audioRef.current.duration);
-    }
-  };
-
-  const handleEnded = () => {
-    setIsPlaying(false);
-    setIsFinished(true);
-    gaEvent({
-      action: 'audio_complete',
-      category: 'Audio',
-      label: '7 Passos para uma Vida Bem-sucedida',
-      value: Math.floor(duration)
-    });
-  };
-
-  const handleProgressBarClick = (event: React.MouseEvent<HTMLDivElement>) => {
-    if (progressBarRef.current && audioRef.current) {
-      const rect = progressBarRef.current.getBoundingClientRect();
-      const x = event.clientX - rect.left;
-      const percentage = x / rect.width;
-      const newTime = percentage * duration;
-      audioRef.current.currentTime = newTime;
-      setCurrentTime(newTime);
-      setIsFinished(false);
-      gaEvent({
-        action: 'audio_seek',
-        category: 'Audio',
-        label: '7 Passos para uma Vida Bem-sucedida',
-        value: Math.floor(newTime)
-      });
-    }
-  };
-
   return (
-    <div className="mt-6 bg-slate-800/50 rounded-xl p-4 space-y-4">
-      <div className="flex items-center gap-4">
-        <button
-          onClick={isFinished ? handleReplay : togglePlay}
-          className="flex-shrink-0 w-12 h-12 bg-gradient-to-r from-amber-500 to-orange-500 rounded-full flex items-center justify-center hover:scale-105 transition-transform"
-        >
-          {isFinished ? (
-            <ArrowPathIcon className="w-6 h-6 text-white" />
-          ) : isPlaying ? (
-            <PauseIcon className="w-6 h-6 text-white" />
-          ) : (
-            <PlayIcon className="w-6 h-6 text-white" />
-          )}
-        </button>
-        <div className="flex-1">
-          <h3 className="text-sm font-medium text-amber-400">PRÉVIA EM ÁUDIO</h3>
-          {error ? (
-            <p className="text-sm text-amber-200">Erro ao carregar o áudio</p>
-          ) : isFinished ? (
-            <p className="text-sm text-slate-300">Clique para ouvir novamente</p>
-          ) : (
-            <p className="text-sm text-slate-300">Ouça uma introdução do conteúdo</p>
-          )}
-        </div>
-      </div>
-
-      {/* Progress Bar */}
-      <div className="space-y-2">
-        <div 
-          ref={progressBarRef}
-          className="h-1.5 bg-slate-700 rounded-full overflow-hidden cursor-pointer relative"
-          onClick={handleProgressBarClick}
-        >
-          <div 
-            className="absolute top-0 left-0 h-full bg-gradient-to-r from-amber-500 to-orange-500 rounded-full transition-all duration-100"
-            style={{ width: `${(currentTime / duration) * 100}%` }}
-          />
-          <div 
-            className="absolute top-1/2 -translate-y-1/2"
-            style={{ left: `${(currentTime / duration) * 100}%` }}
-          >
-            <div className="w-3 h-3 bg-white rounded-full shadow-lg -ml-1.5 opacity-0 group-hover:opacity-100 transition-opacity" />
-          </div>
-        </div>
-        <div className="flex justify-between text-xs text-slate-400">
-          <span>{formatTime(currentTime)}</span>
-          <span>{formatTime(duration)}</span>
-        </div>
-      </div>
-
-      <audio
-        ref={audioRef}
-        src="/audios/podcast__7_passos_para_uma_vida_bemsucedida.mp3"
-        onError={() => setError(true)}
-        onEnded={handleEnded}
-        onTimeUpdate={handleTimeUpdate}
-        onLoadedMetadata={handleLoadedMetadata}
-        className="hidden"
-      />
-    </div>
+    <PodcastPlayer
+      episodeId="preview"
+      title="7 Passos para uma Vida Bem-sucedida"
+      durationDisplay="5:30"
+      audioUrl="/audios/podcast__7_passos_para_uma_vida_bemsucedida.mp3"
+    />
   );
 };
 
@@ -399,7 +244,7 @@ export default function EbookPage({ params }: EbookPageProps) {
       </div>
 
       {/* Benefits Section */}
-      <div className="bg-[#0D1627] py-12 sm:py-16 lg:py-24">
+      <div className="bg-[#0B1221] py-12 sm:py-16 lg:py-24">
         <div className="max-w-7xl mx-auto px-8 sm:px-10 lg:px-8">
           <div className="text-center mb-10 space-y-3">
             <h2 className="text-2xl font-bold bg-gradient-to-r from-white via-amber-100 to-amber-200 text-transparent bg-clip-text lg:text-4xl">
@@ -462,7 +307,7 @@ export default function EbookPage({ params }: EbookPageProps) {
       </div>
 
       {/* Team Section */}
-      <div className="bg-[#0D1627] py-12 sm:py-16 lg:py-24">
+      <div className="bg-[#0B1221] py-12 sm:py-16 lg:py-24">
         <div className="max-w-7xl mx-auto px-8 sm:px-10 lg:px-8">
           <div className="relative">
             <div className="relative bg-gradient-to-br from-slate-800/50 to-slate-900/50 rounded-2xl p-6 lg:p-12">

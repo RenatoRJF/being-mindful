@@ -2,6 +2,7 @@
 
 import { motion, AnimatePresence } from 'framer-motion';
 import { ReactNode } from 'react';
+import { useMediaQuery } from '@/hooks/useMediaQuery';
 
 interface AnimatedSectionProps {
   children: ReactNode;
@@ -17,16 +18,26 @@ export function AnimatedSection({
   direction = 'up'
 }: AnimatedSectionProps) {
   const yOffset = direction === 'up' ? 30 : -30;
+  const isDesktop = useMediaQuery('(min-width: 768px)');
 
   return (
     <AnimatePresence mode="wait">
       <motion.section
-        initial={{ opacity: 0.2, y: yOffset }}
-        whileInView={{ opacity: 1, y: 0 }}
-        exit={{ opacity: 0.2, y: -yOffset }}
+        initial={{ 
+          opacity: isDesktop ? 0.2 : 1, 
+          y: yOffset 
+        }}
+        whileInView={{ 
+          opacity: 1, 
+          y: 0 
+        }}
+        exit={{ 
+          opacity: isDesktop ? 0.2 : 1, 
+          y: -yOffset 
+        }}
         viewport={{ 
           margin: "-100px",
-          amount: 0.3 // Trigger when 30% of the section is visible
+          amount: 0.3
         }}
         transition={{ 
           duration: 0.8,

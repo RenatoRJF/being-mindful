@@ -171,8 +171,8 @@ export default function EbooksPage() {
         </div>
       </div>
 
-      {/* Benefits Section */}
-      <div className="bg-[#0D1627] py-16 lg:py-24">
+      {/* Features Section */}
+      <div className="bg-[#0B1221] py-12 sm:py-16 lg:py-24">
         <div className="max-w-7xl mx-auto px-8 sm:px-10 lg:px-8">
           <div className="text-center mb-12 space-y-4">
             <h2 className="text-2xl font-bold bg-gradient-to-r from-white via-amber-100 to-amber-200 text-transparent bg-clip-text lg:text-4xl">

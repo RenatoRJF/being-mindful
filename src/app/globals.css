@@ -3,8 +3,8 @@
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #0B1221;
+  --foreground: #ededed;
 }
 
 @theme inline {
@@ -16,7 +16,7 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
+    --background: #0B1221;
     --foreground: #ededed;
   }
 }
@@ -30,4 +30,29 @@ body {
 /* Navigation styles */
 nav a {
   cursor: pointer !important;
+}
+
+/* Custom utilities */
+.bg-gradient-radial {
+  background-image: radial-gradient(var(--tw-gradient-stops));
+}
+
+/* Smooth scroll behavior */
+html {
+  scroll-behavior: smooth;
+  background-color: #0B1221;
+}
+
+/* Animations */
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.animate-pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
