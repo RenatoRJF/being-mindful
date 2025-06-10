@@ -40,7 +40,7 @@ export function SuggestedEpisodes({ episodes, currentEpisodeId }: SuggestedEpiso
                   <div className="relative p-3 sm:p-4 md:p-5">
                     <div className="flex gap-3 md:gap-4">
                       <div className="flex-shrink-0 w-8 h-8 md:w-10 md:h-10 rounded-full bg-amber-500/10 flex items-center justify-center transform transition-transform group-hover:scale-110">
-                        <PlayIcon className="w-4 h-4 md:w-5 md:h-5 text-amber-400" />
+                        <PlayIcon className="w-4 h-4 md:w-5 md:h-5 text-brand-teal" />
                       </div>
                       
                       <div className="flex-1 min-w-0">

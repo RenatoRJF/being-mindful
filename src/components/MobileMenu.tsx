@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
+import Image from 'next/image';
 
 type MobileMenuProps = {
   links: Array<{
@@ -102,9 +103,14 @@ export function MobileMenu({ links, isQuemSomosInView }: MobileMenuProps) {
                     className="inline-block"
                     onClick={() => setIsOpen(false)}
                   >
-                    <span className="font-[--font-fraunces] text-2xl font-bold bg-gradient-to-br from-white via-amber-100 to-amber-200 text-transparent bg-clip-text tracking-tighter">
-                      Being Mindful
-                    </span>
+                    <Image
+                      src="/logo.png"
+                      alt="Being Mindful"
+                      width={40}
+                      height={40}
+                      className="w-auto h-8"
+                      priority
+                    />
                   </Link>
                 </div>
 
@@ -131,7 +137,7 @@ export function MobileMenu({ links, isQuemSomosInView }: MobileMenuProps) {
                             }}
                             className={`w-full text-left px-4 py-3 rounded-lg transition-all duration-200 ${
                               isActive
-                                ? 'bg-amber-400/10 text-amber-400 shadow-lg shadow-amber-400/5'
+                                ? 'bg-brand-teal/10 text-brand-teal shadow-lg shadow-brand-teal/5'
                                 : 'text-slate-300 hover:bg-slate-800/50 hover:text-white hover:shadow-lg hover:shadow-white/5'
                             }`}
                           >

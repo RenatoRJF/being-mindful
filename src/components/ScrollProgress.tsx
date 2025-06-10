@@ -1,3 +1,5 @@
+'use client';
+
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 
@@ -6,10 +8,6 @@ interface ScrollProgressProps {
   height?: number;
   /** Background color of the track */
   backgroundColor?: string;
-  /** Start color of the gradient */
-  gradientStart?: string;
-  /** End color of the gradient */
-  gradientEnd?: string;
   /** Z-index of the progress bar */
   zIndex?: number;
   /** Position of the progress bar */
@@ -21,8 +19,6 @@ interface ScrollProgressProps {
 export function ScrollProgress({
   height = 2,
   backgroundColor = 'rgb(30 41 59 / 0.5)', // slate-800/50
-  gradientStart = '#f59e0b', // amber-500
-  gradientEnd = '#f97316', // orange-500
   zIndex = 9999,
   position = 'top',
   transitionDuration = 0.1
@@ -61,10 +57,9 @@ export function ScrollProgress({
       }}
     >
       <motion.div
-        className="h-full"
+        className="h-full bg-gradient-brand"
         style={{
           width: `${progress}%`,
-          background: `linear-gradient(to right, ${gradientStart}, ${gradientEnd})`
         }}
         transition={{
           duration: transitionDuration

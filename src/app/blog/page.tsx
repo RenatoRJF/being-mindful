@@ -1,6 +1,6 @@
 'use client';
 
-import { blogPosts, BlogPost } from '@/lib/blog-data';
+import { blogPosts } from '@/lib/blog-data';
 import dynamic from 'next/dynamic';
 import { Suspense, useState, useEffect } from 'react';
 import { MagnifyingGlassIcon, ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/24/outline';
@@ -76,7 +76,7 @@ export default function BlogPage() {
   return (
     <div className="min-h-screen bg-[#0B1221] pt-32 pb-16">
       <div className="max-w-4xl mx-auto px-6">
-        <h1 className="text-4xl font-bold mb-4 bg-gradient-to-r from-white via-amber-100 to-amber-200 text-transparent bg-clip-text">
+        <h1 className="text-4xl font-bold mb-4 bg-gradient-brand text-transparent bg-clip-text">
           Blog: Descubra, Aprenda, Cresça
         </h1>
         <p className="text-lg text-slate-300 mb-8 leading-relaxed max-w-3xl">
@@ -91,9 +91,9 @@ export default function BlogPage() {
               placeholder="Buscar artigos..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full bg-slate-800/50 border border-slate-700/50 rounded-xl py-3 pl-12 pr-4 text-white placeholder-slate-400 focus:outline-none focus:border-amber-500/50 focus:ring-1 focus:ring-amber-500/50 transition-colors"
+              className="w-full bg-slate-800/50 border border-slate-700/50 rounded-xl py-3 pl-12 pr-4 text-white placeholder-slate-400 focus:outline-none focus:border-brand-teal/50 focus:ring-1 focus:ring-brand-teal/50 transition-colors"
             />
-            <MagnifyingGlassIcon className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400" />
+            <MagnifyingGlassIcon className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-brand-teal/60" />
           </div>
           {searchTerm && (
             <p className="mt-2 text-sm text-slate-400">
@@ -114,7 +114,7 @@ export default function BlogPage() {
               disabled={currentPage === 1}
               className="p-2 rounded-lg bg-slate-800/50 text-slate-400 hover:bg-slate-800/70 hover:text-white disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-slate-800/50 disabled:hover:text-slate-400 transition-colors"
             >
-              <ChevronLeftIcon className="w-5 h-5" />
+              <ChevronLeftIcon className="w-5 h-5 text-brand-teal" />
             </button>
             
             {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
@@ -123,7 +123,7 @@ export default function BlogPage() {
                 onClick={() => handlePageChange(page)}
                 className={`w-10 h-10 rounded-lg text-sm font-medium transition-colors ${
                   currentPage === page
-                    ? 'bg-amber-500 text-white'
+                    ? 'bg-gradient-brand text-white'
                     : 'bg-slate-800/50 text-slate-400 hover:bg-slate-800/70 hover:text-white'
                 }`}
               >
@@ -136,7 +136,7 @@ export default function BlogPage() {
               disabled={currentPage === totalPages}
               className="p-2 rounded-lg bg-slate-800/50 text-slate-400 hover:bg-slate-800/70 hover:text-white disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-slate-800/50 disabled:hover:text-slate-400 transition-colors"
             >
-              <ChevronRightIcon className="w-5 h-5" />
+              <ChevronRightIcon className="w-5 h-5 text-brand-teal" />
             </button>
           </div>
         )}

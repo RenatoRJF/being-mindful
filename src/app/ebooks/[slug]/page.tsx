@@ -28,7 +28,7 @@ const HoverCard = ({ children, className = "" }: { children: React.ReactNode, cl
 );
 
 const DiscountBadge = ({ discount }: { discount: string }) => (
-  <div className="absolute -top-3 -right-3 bg-amber-500 text-white px-3 py-1.5 rounded-lg text-sm font-bold animate-pulse z-10">
+  <div className="absolute -top-3 -right-3 bg-brand-teal text-white px-3 py-1.5 rounded-lg text-sm font-bold animate-pulse z-10">
     -{discount}
   </div>
 );
@@ -165,11 +165,11 @@ export default function EbookPage({ params }: EbookPageProps) {
             {/* Content */}
             <div className="w-full order-2 lg:order-1 lg:w-1/2 space-y-6">
               <div className="space-y-3">
-                <h2 className="text-amber-400 font-medium text-base tracking-wider">EBOOK EXCLUSIVO</h2>
-                <h1 className="text-3xl font-bold leading-tight bg-gradient-to-r from-white via-amber-100 to-amber-200 text-transparent bg-clip-text lg:text-5xl">
+                <h2 className="text-brand-teal font-medium text-base tracking-wider">EBOOK EXCLUSIVO</h2>
+                <h1 className="text-3xl font-bold leading-tight bg-gradient-brand text-transparent bg-clip-text lg:text-5xl">
                   {ebook.title}
                 </h1>
-                <p className="text-lg text-amber-100/80">
+                <p className="text-lg text-brand-teal/80">
                   {ebook.subtitle}
                 </p>
               </div>
@@ -180,14 +180,14 @@ export default function EbookPage({ params }: EbookPageProps) {
 
               {/* Social Proof */}
               <div className="space-y-4">
-                <HoverCard className="flex items-center gap-3 bg-gradient-to-r from-amber-500/10 via-orange-500/10 to-amber-500/10 p-4 rounded-xl cursor-pointer border border-amber-500/20">
+                <HoverCard className="flex items-center gap-3 bg-gradient-brand/10 p-4 rounded-xl cursor-pointer border border-brand-teal/20">
                   <div className="flex -space-x-2">
                     {[1,2,3].map((i) => (
-                      <div key={i} className="w-7 h-7 rounded-full bg-gradient-to-r from-amber-400 to-orange-400 border-2 border-slate-800 sm:w-8 sm:h-8" />
+                      <div key={i} className="w-7 h-7 rounded-full bg-gradient-brand border-2 border-slate-800 sm:w-8 sm:h-8" />
                     ))}
                   </div>
                   <p className="text-sm text-slate-300 lg:text-base">
-                    <span className="text-amber-400 font-semibold">+17.000 pessoas</span> já transformaram suas vidas com este e-book
+                    <span className="text-brand-teal font-semibold">+17.000 pessoas</span> já transformaram suas vidas com este e-book
                   </p>
                 </HoverCard>
 
@@ -200,7 +200,7 @@ export default function EbookPage({ params }: EbookPageProps) {
                       key={index}
                       className="bg-slate-800/30 p-3 rounded-lg text-center cursor-pointer"
                     >
-                      <div className="text-2xl font-bold bg-gradient-to-r from-amber-400 to-orange-400 text-transparent bg-clip-text">
+                      <div className="text-2xl font-bold bg-gradient-brand text-transparent bg-clip-text">
                         {stat.value}
                       </div>
                       <div className="text-xs text-slate-400 mt-1">
@@ -216,7 +216,7 @@ export default function EbookPage({ params }: EbookPageProps) {
                 <div className="relative inline-flex">
                   <DiscountBadge discount={ebook.price.discount} />
                   <HoverButton 
-                    className="w-full px-6 py-4 bg-gradient-to-r from-amber-500 to-orange-500 rounded-xl text-base font-semibold sm:w-auto lg:text-lg"
+                    className="w-full px-6 py-4 bg-gradient-brand rounded-xl text-base font-semibold sm:w-auto lg:text-lg"
                     onClick={handlePurchaseClick}
                   >
                     <span className="flex flex-col items-center sm:items-start">
@@ -247,7 +247,7 @@ export default function EbookPage({ params }: EbookPageProps) {
       <div className="bg-[#0B1221] py-12 sm:py-16 lg:py-24">
         <div className="max-w-7xl mx-auto px-8 sm:px-10 lg:px-8">
           <div className="text-center mb-10 space-y-3">
-            <h2 className="text-2xl font-bold bg-gradient-to-r from-white via-amber-100 to-amber-200 text-transparent bg-clip-text lg:text-4xl">
+            <h2 className="text-2xl font-bold bg-gradient-brand text-transparent bg-clip-text lg:text-4xl">
               Transforme sua vida hoje
             </h2>
             <p className="text-base text-slate-400 lg:text-xl">
@@ -261,7 +261,7 @@ export default function EbookPage({ params }: EbookPageProps) {
                 key={index}
                 className="bg-slate-800/50 p-6 rounded-xl cursor-pointer lg:p-8"
               >
-                <h3 className="text-xl font-semibold mb-3 text-amber-100 lg:text-2xl lg:mb-4">{benefit.title}</h3>
+                <h3 className="text-xl font-semibold mb-3 text-brand-teal lg:text-2xl lg:mb-4">{benefit.title}</h3>
                 <p className="text-base text-slate-300 lg:text-lg">{benefit.description}</p>
               </HoverCard>
             ))}
@@ -274,7 +274,7 @@ export default function EbookPage({ params }: EbookPageProps) {
         <div className="max-w-7xl mx-auto px-8 sm:px-10 lg:px-8">
           <div className="grid gap-8 lg:grid-cols-2 lg:gap-16 lg:items-center">
             <div>
-              <h2 className="text-2xl font-bold mb-6 bg-gradient-to-r from-white via-amber-100 to-amber-200 text-transparent bg-clip-text lg:text-4xl lg:mb-8">
+              <h2 className="text-2xl font-bold mb-6 bg-gradient-brand text-transparent bg-clip-text lg:text-4xl lg:mb-8">
                 O que você vai aprender
               </h2>
               <div className="space-y-4 lg:space-y-6">
@@ -283,7 +283,7 @@ export default function EbookPage({ params }: EbookPageProps) {
                     key={index}
                     className="flex items-start gap-4 group cursor-pointer"
                   >
-                    <div className="flex-shrink-0 w-8 h-8 bg-gradient-to-r from-amber-500 to-orange-500 rounded-full flex items-center justify-center font-semibold text-base lg:w-10 lg:h-10">
+                    <div className="flex-shrink-0 w-8 h-8 bg-gradient-brand rounded-full flex items-center justify-center font-semibold text-base lg:w-10 lg:h-10">
                       {index + 1}
                     </div>
                     <p className="text-base text-slate-300 pt-1 lg:text-lg">{feature}</p>
@@ -294,7 +294,7 @@ export default function EbookPage({ params }: EbookPageProps) {
             <div className="relative">
               <div className="aspect-video bg-slate-900 rounded-lg overflow-hidden relative">
                 <div className="absolute inset-0 flex items-center justify-center">
-                  <HoverCard className="w-12 h-12 rounded-full bg-amber-500 flex items-center justify-center cursor-pointer lg:w-16 lg:h-16">
+                  <HoverCard className="w-12 h-12 rounded-full bg-brand-teal flex items-center justify-center cursor-pointer lg:w-16 lg:h-16">
                     <svg className="w-6 h-6 text-white lg:w-8 lg:h-8" fill="currentColor" viewBox="0 0 20 20">
                       <path d="M6.3 2.841A1.5 1.5 0 004 4.11V15.89a1.5 1.5 0 002.3 1.269l9.344-5.89a1.5 1.5 0 000-2.538L6.3 2.84z" />
                     </svg>
@@ -313,16 +313,16 @@ export default function EbookPage({ params }: EbookPageProps) {
             <div className="relative bg-gradient-to-br from-slate-800/50 to-slate-900/50 rounded-2xl p-6 lg:p-12">
               <div className="flex flex-col items-center gap-6 text-center md:flex-row md:gap-12 md:text-left">
                 <div className="w-32 h-32 rounded-xl bg-gradient-to-br from-slate-900 to-slate-800 flex items-center justify-center shadow-lg lg:w-48 lg:h-48">
-                  <span className="font-[--font-fraunces] text-4xl font-bold bg-gradient-to-br from-white via-amber-100 to-amber-200 text-transparent bg-clip-text tracking-tighter lg:text-6xl">
+                  <span className="font-[--font-fraunces] text-4xl font-bold bg-gradient-brand text-transparent bg-clip-text tracking-tighter lg:text-6xl">
                     BM
                   </span>
                 </div>
                 <div className="flex-1">
                   <div className="mb-3">
-                    <h2 className="text-2xl font-bold bg-gradient-to-r from-white via-amber-100 to-amber-200 text-transparent bg-clip-text lg:text-3xl">
+                    <h2 className="text-2xl font-bold bg-gradient-brand text-transparent bg-clip-text lg:text-3xl">
                       {ebook.team.name}
                     </h2>
-                    <p className="text-amber-400 font-medium text-base lg:text-lg">{ebook.team.role}</p>
+                    <p className="text-brand-teal font-medium text-base lg:text-lg">{ebook.team.role}</p>
                   </div>
                   <p className="text-base text-slate-300 lg:text-xl">
                     {ebook.team.bio}
@@ -337,10 +337,10 @@ export default function EbookPage({ params }: EbookPageProps) {
       {/* CTA Section */}
       <div className="bg-[#0B1221] py-12 sm:py-16 lg:py-24">
         <div className="max-w-3xl mx-auto px-8 sm:px-10 lg:px-8 text-center">
-          <span className="inline-block text-amber-400 font-semibold mb-4 px-4 py-2 bg-amber-500/10 rounded-full border border-amber-500/20 text-sm lg:text-base">
+          <span className="inline-block text-brand-teal font-semibold mb-4 px-4 py-2 bg-brand-teal/10 rounded-full border border-brand-teal/20 text-sm lg:text-base">
             Oferta por Tempo Limitado
           </span>
-          <h2 className="text-2xl font-bold mb-4 bg-gradient-to-r from-white via-amber-100 to-amber-200 text-transparent bg-clip-text lg:text-4xl lg:mb-6">
+          <h2 className="text-2xl font-bold mb-4 bg-gradient-brand text-transparent bg-clip-text lg:text-4xl lg:mb-6">
             Comece sua transformação hoje
           </h2>
           <p className="text-base text-slate-400 mb-8 lg:text-xl lg:mb-12">
@@ -350,7 +350,7 @@ export default function EbookPage({ params }: EbookPageProps) {
           <div className="flex justify-center">
             <div className="relative inline-flex">
               <DiscountBadge discount={ebook.price.discount} />
-              <HoverButton className="w-full px-8 py-4 bg-gradient-to-r from-amber-500 to-orange-500 rounded-xl text-base font-semibold lg:px-12 lg:py-6 lg:text-xl">
+              <HoverButton className="w-full px-8 py-4 bg-gradient-brand rounded-xl text-base font-semibold lg:px-12 lg:py-6 lg:text-xl">
                 <span className="flex flex-col items-center">
                   <span className="text-sm line-through opacity-75">{ebook.price.original}</span>
                   <span className="text-lg">Garantir por {ebook.price.current}</span>

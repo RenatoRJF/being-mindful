@@ -80,31 +80,31 @@ export default function BlogList({ posts }: { posts: BlogPost[] }) {
           <Link href={`/blog/${post.slug}`}>
             <div className="bg-slate-800/50 rounded-xl p-6 hover:bg-slate-800/70 transition-all duration-300">
               <div className="flex items-center gap-4 mb-3">
-                <div className="flex items-center gap-2 text-amber-400/80 text-sm">
-                  <ClockIcon className="w-4 h-4" />
+                <div className="flex items-center gap-2 text-brand-teal/80 text-sm">
+                  <ClockIcon className="w-4 h-4 text-brand-teal" />
                   <span>{calculateReadingTime(post.sections.map(section => section.content || '').filter(Boolean))} min de leitura</span>
                 </div>
                 {post.podcast && (
-                  <div className="flex items-center gap-2 text-amber-400/80 text-sm">
-                    <PlayIcon className="w-4 h-4" />
+                  <div className="flex items-center gap-2 text-brand-teal/80 text-sm">
+                    <PlayIcon className="w-4 h-4 text-brand-teal" />
                     <span>{formatDuration(audioDurations[post.slug])}</span>
                   </div>
                 )}
               </div>
-              <h2 className="text-2xl font-semibold mb-4 text-white group-hover:text-amber-400 transition-colors">
+              <h2 className="text-2xl font-semibold mb-4 text-white group-hover:text-brand-teal transition-colors">
                 {post.title}
               </h2>
               {post.quote && (
-                <blockquote className="border-l-2 border-amber-500/30 pl-4 mb-4">
+                <blockquote className="border-l-2 border-brand-teal/30 pl-4 mb-4">
                   <p className="text-slate-300 italic mb-2">{post.quote.text}</p>
-                  <footer className="text-amber-400 text-sm">— {post.quote.author}</footer>
+                  <footer className="text-brand-teal text-sm">— {post.quote.author}</footer>
                 </blockquote>
               )}
               <p className="text-slate-400 line-clamp-3">
                 {getFirstTextContent(post)}
               </p>
               <div className="mt-4 flex items-center justify-between">
-                <div className="text-amber-400 text-sm font-medium">
+                <div className="text-brand-teal text-sm font-medium">
                   {post.podcast ? 'Ouvir episódio' : 'Ler mais'}
                   <svg
                     className="ml-2 w-4 h-4 transform group-hover:translate-x-1 transition-transform inline-block"

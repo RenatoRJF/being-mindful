@@ -17,7 +17,6 @@ export function PodcastPlayer({ episodeId, title, durationDisplay, audioUrl }: P
   const [audioDuration, setAudioDuration] = useState(0);
   const [volume, setVolume] = useState(0.4);
   const [isMuted, setIsMuted] = useState(false);
-  const [isHovering, setIsHovering] = useState(false);
   const [isFinished, setIsFinished] = useState(false);
   const audioRef = useRef<HTMLAudioElement>(null);
   const progressBarRef = useRef<HTMLDivElement>(null);
@@ -180,7 +179,7 @@ export function PodcastPlayer({ episodeId, title, durationDisplay, audioUrl }: P
             <div className="flex items-center justify-between w-full">
               <button
                 onClick={isFinished ? handleReplay : togglePlay}
-                className="flex-shrink-0 w-10 h-10 rounded-full bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-400 hover:to-orange-400 transition-all duration-300 flex items-center justify-center shadow-lg hover:shadow-amber-500/20 hover:scale-105"
+                className="flex-shrink-0 w-10 h-10 rounded-full bg-gradient-brand hover:opacity-90 transition-all duration-300 flex items-center justify-center shadow-lg hover:shadow-brand-teal/20 hover:scale-105"
               >
                 {isFinished ? (
                   <ArrowPathIcon className="w-5 h-5 text-white" />
@@ -197,9 +196,9 @@ export function PodcastPlayer({ episodeId, title, durationDisplay, audioUrl }: P
                   className="text-slate-400 hover:text-white transition-colors p-1.5 rounded-full hover:bg-slate-700/50 flex items-center justify-center"
                 >
                   {isMuted ? (
-                    <SpeakerXMarkIcon className="w-5 h-5" />
+                    <SpeakerXMarkIcon className="w-5 h-5 text-brand-teal" />
                   ) : (
-                    <SpeakerWaveIcon className="w-5 h-5" />
+                    <SpeakerWaveIcon className="w-5 h-5 text-brand-teal" />
                   )}
                 </button>
                 <div className="w-24 flex items-center">
@@ -210,7 +209,7 @@ export function PodcastPlayer({ episodeId, title, durationDisplay, audioUrl }: P
                     step="0.1"
                     value={volume}
                     onChange={handleVolumeChange}
-                    className="w-full accent-amber-500 hover:accent-amber-400 transition-colors"
+                    className="w-full accent-brand-teal hover:accent-brand-purple transition-colors"
                   />
                 </div>
               </div>
@@ -221,7 +220,7 @@ export function PodcastPlayer({ episodeId, title, durationDisplay, audioUrl }: P
           <div className="hidden sm:flex items-center gap-4">
             <button
               onClick={isFinished ? handleReplay : togglePlay}
-              className="flex-shrink-0 w-12 h-12 rounded-full bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-400 hover:to-orange-400 transition-all duration-300 flex items-center justify-center shadow-lg hover:shadow-amber-500/20 hover:scale-105"
+              className="flex-shrink-0 w-12 h-12 rounded-full bg-gradient-brand hover:opacity-90 transition-all duration-300 flex items-center justify-center shadow-lg hover:shadow-brand-teal/20 hover:scale-105"
             >
               {isFinished ? (
                 <ArrowPathIcon className="w-6 h-6 text-white" />
@@ -255,8 +254,6 @@ export function PodcastPlayer({ episodeId, title, durationDisplay, audioUrl }: P
 
         <div 
           className="relative group"
-          onMouseEnter={() => setIsHovering(true)}
-          onMouseLeave={() => setIsHovering(false)}
         >
           <div className="flex items-center gap-2 mb-1.5">
             <span className="text-xs sm:text-sm text-slate-400 font-medium w-[48px] text-right">{formatTime(currentTime)}</span>
@@ -266,9 +263,9 @@ export function PodcastPlayer({ episodeId, title, durationDisplay, audioUrl }: P
                 className="text-slate-400 group-hover/volume:text-white transition-colors p-1 rounded-full hover:bg-slate-700/50 relative flex-shrink-0"
               >
                 {isMuted ? (
-                  <SpeakerXMarkIcon className="w-4 h-4" />
+                  <SpeakerXMarkIcon className="w-4 h-4 text-brand-teal" />
                 ) : (
-                  <SpeakerWaveIcon className="w-4 h-4" />
+                  <SpeakerWaveIcon className="w-4 h-4 text-brand-teal" />
                 )}
               </button>
               <div className="w-[104px] flex items-center opacity-0 group-hover/volume:opacity-100 focus-within:opacity-100 transition-all duration-200 pointer-events-none group-hover/volume:pointer-events-auto">
@@ -280,7 +277,7 @@ export function PodcastPlayer({ episodeId, title, durationDisplay, audioUrl }: P
                     step="0.1"
                     value={volume}
                     onChange={handleVolumeChange}
-                    className="w-full accent-amber-500 hover:accent-amber-400 transition-colors relative z-30"
+                    className="w-full accent-brand-teal hover:accent-brand-purple transition-colors relative z-30"
                   />
                 </div>
               </div>
@@ -290,32 +287,11 @@ export function PodcastPlayer({ episodeId, title, durationDisplay, audioUrl }: P
           
           <div 
             ref={progressBarRef}
-            className="relative h-1.5 sm:h-2 bg-slate-700/50 rounded-full overflow-hidden cursor-pointer"
+            className="relative w-full h-1 bg-slate-700/50 rounded-full overflow-hidden"
           >
-            {/* Background gradient */}
-            <div className="absolute inset-0 bg-gradient-to-r from-slate-700/50 to-slate-600/50" />
-            
-            {/* Progress bar */}
-            <motion.div 
-              className="absolute top-0 left-0 h-full bg-gradient-to-r from-amber-500 to-orange-500 rounded-full"
+            <div
+              className="absolute top-0 left-0 h-full bg-gradient-brand rounded-full"
               style={{ width: `${(currentTime / audioDuration) * 100}%` }}
-              transition={{ type: "spring", stiffness: 100, damping: 15 }}
-            />
-            
-            {/* Hover effect */}
-            <div 
-              className="absolute top-0 left-0 h-full bg-white/20 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-200"
-              style={{ width: `${(currentTime / audioDuration) * 100}%` }}
-            />
-            
-            {/* Progress handle */}
-            <motion.div 
-              className="absolute top-1/2 -translate-y-1/2 w-2.5 h-2.5 sm:w-3 sm:h-3 bg-white rounded-full shadow-lg opacity-0 group-hover:opacity-100 transition-all duration-200"
-              style={{ 
-                left: `${(currentTime / audioDuration) * 100}%`,
-                transform: `translate(-50%, -50%) scale(${isHovering ? 1.2 : 1})`,
-              }}
-              whileHover={{ scale: 1.3 }}
             />
           </div>
           

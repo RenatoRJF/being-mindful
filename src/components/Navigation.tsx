@@ -6,6 +6,7 @@ import { motion } from 'framer-motion';
 import { Suspense, useEffect, useState } from 'react';
 import { MobileMenu } from './MobileMenu';
 import { ScrollProgress } from './ScrollProgress';
+import Image from 'next/image';
 
 function NavigationContent() {
   const pathname = usePathname();
@@ -79,9 +80,14 @@ function NavigationContent() {
             {/* Logo */}
             <div className="flex-shrink-0">
               <Link href="/" className="flex items-center">
-                <span className="font-[--font-fraunces] text-2xl font-bold bg-gradient-to-br from-white via-amber-100 to-amber-200 text-transparent bg-clip-text tracking-tighter">
-                  BM
-                </span>
+                <Image
+                  src="/logo.png"
+                  alt="Being Mindful"
+                  width={40}
+                  height={40}
+                  className="w-auto h-8"
+                  priority
+                />
               </Link>
             </div>
 
@@ -109,12 +115,12 @@ function NavigationContent() {
                       }}
                       className="relative px-3 py-2 text-sm font-medium transition-colors cursor-pointer"
                     >
-                      <span className={`relative z-10 ${isActive ? 'text-amber-400' : 'text-slate-300 hover:text-white'}`}>
+                      <span className={`relative z-10 ${isActive ? 'text-brand-teal' : 'text-slate-300 hover:text-white'}`}>
                         {link.label}
                       </span>
                       {isActive && (
                         <motion.div
-                          className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-amber-500 to-orange-500"
+                          className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-brand"
                           initial={{ opacity: 0, scaleX: 0 }}
                           animate={{ opacity: 1, scaleX: 1 }}
                           exit={{ opacity: 0, scaleX: 0 }}

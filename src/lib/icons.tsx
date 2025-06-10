@@ -3,11 +3,11 @@ import { AcademicCapIcon, LightBulbIcon, SparklesIcon } from '@heroicons/react/2
 export const getSectionIcon = (type: string) => {
   switch (type) {
     case 'introduction':
-      return <AcademicCapIcon className="w-6 h-6 text-amber-400" />;
+      return <AcademicCapIcon className="w-6 h-6 text-brand-teal" />;
     case 'tip':
-      return <LightBulbIcon className="w-6 h-6 text-amber-400" />;
+      return <LightBulbIcon className="w-6 h-6 text-brand-teal" />;
     case 'conclusion':
-      return <SparklesIcon className="w-6 h-6 text-amber-400" />;
+      return <SparklesIcon className="w-6 h-6 text-brand-teal" />;
     default:
       return null;
   }

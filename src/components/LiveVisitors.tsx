@@ -111,12 +111,12 @@ export function LiveVisitors() {
       {/* Desktop version */}
       <div className="hidden md:block fixed bottom-32 left-8 z-[1000]">
         <div className="relative">
-          <div className="bg-slate-800/80 backdrop-blur-sm border border-amber-500/20 rounded-lg p-3 shadow-lg">
+          <div className="bg-slate-800/80 backdrop-blur-sm border border-brand-teal/20 rounded-lg p-3 shadow-lg">
             <div className="flex items-center gap-3">
               {/* Animated icon */}
               <div className="relative">
-                <div className="absolute inset-0 bg-amber-500/20 rounded-full animate-ping" />
-                <div className="relative w-8 h-8 bg-gradient-to-br from-amber-500 to-orange-500 rounded-full flex items-center justify-center">
+                <div className="absolute inset-0 bg-brand-teal/20 rounded-full animate-ping" />
+                <div className="relative w-8 h-8 bg-gradient-to-br from-brand-teal to-brand-teal-focus rounded-full flex items-center justify-center">
                   <UserGroupIcon className="w-4 h-4 text-white" />
                 </div>
               </div>
@@ -125,7 +125,7 @@ export function LiveVisitors() {
               <div className="flex flex-col">
                 <span className="text-xs text-slate-300 font-medium">Visitantes agora</span>
                 <div className="flex items-baseline gap-1">
-                  <span className="text-lg font-bold text-amber-400">
+                  <span className="text-lg font-bold text-brand-teal">
                     {formatVisitorCount(visitorCount, false)}
                   </span>
                   <span className="text-xs text-slate-300">pessoas</span>
@@ -134,8 +134,8 @@ export function LiveVisitors() {
 
               {/* Live indicator */}
               <div className="flex items-center gap-1.5 ml-2">
-                <span className="w-1.5 h-1.5 bg-amber-400 rounded-full animate-pulse" />
-                <span className="text-xs text-amber-400 font-medium">ao vivo</span>
+                <span className="w-1.5 h-1.5 bg-brand-teal rounded-full animate-pulse" />
+                <span className="text-xs text-brand-teal font-medium">ao vivo</span>
               </div>
             </div>
           </div>
@@ -145,18 +145,18 @@ export function LiveVisitors() {
       {/* Mobile version - minimalist */}
       <div className="md:hidden fixed bottom-24 left-0 z-[1000]">
         <div className="relative">
-          <div className="bg-slate-800/90 backdrop-blur-sm border border-amber-500/20 border-l-0 rounded-r-full px-4 py-1.5 shadow-lg">
+          <div className="bg-slate-800/90 backdrop-blur-sm border border-brand-teal/20 border-l-0 rounded-r-full px-4 py-1.5 shadow-lg">
             <div className="flex items-center gap-2">
               <div className="relative">
-                <div className="absolute inset-0 bg-amber-500/20 rounded-full animate-ping" />
-                <div className="relative w-6 h-6 bg-gradient-to-br from-amber-500 to-orange-500 rounded-full flex items-center justify-center">
+                <div className="absolute inset-0 bg-brand-teal/20 rounded-full animate-ping" />
+                <div className="relative w-6 h-6 bg-gradient-to-br from-brand-teal to-brand-teal-focus rounded-full flex items-center justify-center">
                   <UserGroupIcon className="w-3 h-3 text-white" />
                 </div>
               </div>
               <div className="flex flex-col items-center">
                 <div className="flex items-center gap-1.5">
-                  <span className="text-sm font-bold text-amber-400">{formatVisitorCount(visitorCount, true)}</span>
-                  <span className="w-1 h-1 bg-amber-400 rounded-full animate-pulse" />
+                  <span className="text-sm font-bold text-brand-teal">{formatVisitorCount(visitorCount, true)}</span>
+                  <span className="w-1 h-1 bg-brand-teal rounded-full animate-pulse" />
                 </div>
                 <span className="text-[10px] text-slate-300 font-medium leading-none mt-0.5">Visitantes</span>
               </div>
