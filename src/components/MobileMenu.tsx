@@ -38,11 +38,11 @@ export function MobileMenu({ links, isQuemSomosInView }: MobileMenuProps) {
   }, [isOpen]);
 
   return (
-    <div className="relative z-[9999]">
+    <div className="sm:hidden">
       {/* Burger Menu Button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="sm:hidden p-2 text-slate-400 hover:text-white transition-colors"
+        className="relative z-[9999] p-2 text-slate-400 hover:text-white transition-colors"
         aria-label={isOpen ? 'Close menu' : 'Open menu'}
       >
         <svg
@@ -70,7 +70,7 @@ export function MobileMenu({ links, isQuemSomosInView }: MobileMenuProps) {
       </button>
 
       {/* Portal for overlay and sidebar */}
-      <div className="relative z-[9999]">
+      <div className="fixed inset-0 z-[9998] pointer-events-none">
         {/* Sidebar Overlay */}
         <AnimatePresence>
           {isOpen && (
@@ -79,7 +79,7 @@ export function MobileMenu({ links, isQuemSomosInView }: MobileMenuProps) {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.2 }}
-              className="fixed inset-0 bg-black/60 backdrop-blur-sm sm:hidden"
+              className="absolute inset-0 bg-black/60 backdrop-blur-sm sm:hidden pointer-events-auto"
               onClick={() => setIsOpen(false)}
             />
           )}
@@ -93,7 +93,7 @@ export function MobileMenu({ links, isQuemSomosInView }: MobileMenuProps) {
               animate={{ x: 0 }}
               exit={{ x: '-100%' }}
               transition={{ type: 'spring', damping: 30, stiffness: 300 }}
-              className="fixed top-0 left-0 h-[100dvh] w-72 bg-slate-900/95 backdrop-blur-lg border-r border-slate-800/50 sm:hidden shadow-xl"
+              className="absolute top-0 left-0 h-[100dvh] w-72 bg-slate-900/95 backdrop-blur-lg border-r border-slate-800/50 sm:hidden shadow-xl pointer-events-auto"
             >
               <div className="flex flex-col h-full min-h-[100dvh]">
                 {/* Logo */}

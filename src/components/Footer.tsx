@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { EnvelopeIcon } from '@heroicons/react/24/outline';
+import { SocialLinks } from './SocialLinks';
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
@@ -169,6 +170,9 @@ export function Footer() {
 
         <div className="border-t border-slate-800/60 pt-8">
           <div className="text-center">
+            <div className="mb-8">
+              <SocialLinks />
+            </div>
             <p className="text-sm text-slate-400">
               © {currentYear} Being Mindful. Todos os direitos reservados.
             </p>

@@ -7,6 +7,7 @@ import { Suspense, useEffect, useState } from 'react';
 import { MobileMenu } from './MobileMenu';
 import { ScrollProgress } from './ScrollProgress';
 import Image from 'next/image';
+import { SocialLinks } from './SocialLinks';
 
 function NavigationContent() {
   const pathname = usePathname();
@@ -132,8 +133,10 @@ function NavigationContent() {
               })}
             </ul>
 
-            {/* Right side spacing for symmetry */}
-            <div className="hidden sm:block flex-shrink-0 w-[40px]" />
+            {/* Social Links */}
+            <div className="hidden sm:block">
+              <SocialLinks className="flex-row" />
+            </div>
           </div>
         </div>
       </nav>
