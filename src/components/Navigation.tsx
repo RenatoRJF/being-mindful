@@ -80,14 +80,7 @@ function NavigationContent() {
             {/* Logo */}
             <div className="flex-shrink-0">
               <Link href="/" className="flex items-center">
-                <Image
-                  src="/logo.png"
-                  alt="Being Mindful"
-                  width={40}
-                  height={40}
-                  className="w-auto h-8"
-                  priority
-                />
+                <Image src="/logo.svg" alt="Logo" width={36} height={36} />
               </Link>
             </div>
 
@@ -155,7 +148,7 @@ function NavigationLoading() {
       <div className="max-w-screen-xl mx-auto px-4">
         <div className="flex items-center justify-between h-20">
           <div className="flex-shrink-0">
-            <div className="w-8 h-8 bg-slate-700 rounded animate-pulse" />
+            <div className="w-8 h-8 bg-slate-700/50 rounded-lg animate-pulse" />
           </div>
           <ul className="hidden sm:flex items-center gap-8">
             {[1, 2, 3].map((i) => (
