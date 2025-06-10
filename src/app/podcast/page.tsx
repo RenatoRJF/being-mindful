@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { PlayIcon, ClockIcon, MicrophoneIcon, SparklesIcon, HeartIcon, ChartBarIcon } from '@heroicons/react/24/outline';
+import { PlayIcon, ClockIcon, MicrophoneIcon, SparklesIcon, HeartIcon, ChartBarIcon, SpeakerWaveIcon } from '@heroicons/react/24/outline';
 import { HoverCard } from '@/components/HoverCard';
 import Link from 'next/link';
 import { podcastEpisodes } from '@/lib/podcast-data';
@@ -89,38 +89,78 @@ export default function PodcastPage() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
               >
-                <Link href={`/podcast/${episode.slug}`} className="block h-full">
+                <Link href={`/podcast/${episode.slug}`} className="block h-full group">
                   <HoverCard className="h-full bg-slate-800/50 rounded-xl overflow-hidden border border-slate-700/50 transition-all duration-300 hover:border-brand-teal/30 hover:bg-slate-800/80">
-                    <div className="aspect-video bg-slate-900 relative group">
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                      <div className="absolute inset-0 flex items-center justify-center">
-                        <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-gradient-brand flex items-center justify-center transform transition-transform group-hover:scale-110">
-                          <PlayIcon className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
+                    {/* Audio Visualization Section */}
+                    <div className="relative p-6 flex items-center gap-6 border-b border-slate-700/50">
+                      {/* Play Button */}
+                      <div className="relative">
+                        <div className="absolute -inset-2 bg-gradient-brand opacity-0 group-hover:opacity-20 rounded-full blur transition-opacity" />
+                        <div className="relative w-12 h-12 rounded-full bg-gradient-brand flex items-center justify-center transform transition-transform group-hover:scale-110">
+                          <PlayIcon className="w-6 h-6 text-white" />
                         </div>
+                      </div>
+
+                      {/* Audio Wave Animation */}
+                      <div className="flex-1 flex items-end gap-1 h-12">
+                        {[...Array(20)].map((_, i) => (
+                          <div
+                            key={i}
+                            className="flex-1 bg-gradient-to-t from-brand-teal/80 to-brand-purple/80 rounded-full transform origin-bottom transition-all duration-300"
+                            style={{
+                              height: `${Math.max(15, Math.random() * 100)}%`,
+                              animation: `audioWave${i % 5} 1.5s ease-in-out infinite`,
+                              animationDelay: `${i * 0.1}s`
+                            }}
+                          />
+                        ))}
+                      </div>
+
+                      {/* Duration with Icon */}
+                      <div className="flex items-center gap-2 text-sm text-slate-400">
+                        <ClockIcon className="w-4 h-4" />
+                        <span>{episode.duration}</span>
                       </div>
                     </div>
                     
-                    <div className="p-4 sm:p-6">
-                      <div className="flex items-center gap-2 text-xs sm:text-sm text-brand-teal mb-3">
-                        <span className="px-2 py-1 rounded-full bg-brand-teal/10">
+                    <div className="p-6">
+                      {/* Category and Episode Number */}
+                      <div className="flex items-center gap-3 text-sm text-brand-teal mb-4">
+                        <span className="px-3 py-1 rounded-full bg-brand-teal/10 flex items-center gap-2">
+                          <SpeakerWaveIcon className="w-4 h-4" />
                           {episode.category}
                         </span>
-                        <span>•</span>
-                        <span>{episode.duration}</span>
+                        <span className="text-slate-400">Episódio {episode.id}</span>
                       </div>
                       
-                      <h3 className="text-lg sm:text-xl font-semibold mb-2 text-white group-hover:text-brand-teal transition-colors">
+                      {/* Title */}
+                      <h3 className="text-xl font-semibold mb-3 text-white group-hover:text-brand-teal transition-colors">
                         {episode.title}
                       </h3>
                       
-                      <p className="text-sm sm:text-base text-slate-400 line-clamp-2 mb-4">
+                      {/* Description */}
+                      <p className="text-base text-slate-400 line-clamp-2 mb-4">
                         {episode.description}
                       </p>
                       
-                      <div className="flex items-center justify-between text-sm">
+                      {/* Topics */}
+                      <div className="flex flex-wrap gap-2 mb-4">
+                        {episode.topics.slice(0, 3).map((topic) => (
+                          <span
+                            key={topic}
+                            className="text-xs px-2 py-1 rounded-full bg-slate-700/30 text-slate-300"
+                          >
+                            {topic}
+                          </span>
+                        ))}
+                      </div>
+                      
+                      {/* Footer */}
+                      <div className="flex items-center justify-between text-sm mt-auto">
                         <span className="text-slate-500">{episode.publishDate}</span>
-                        <span className="text-brand-teal group-hover:translate-x-1 transition-transform">
-                          Ouvir episódio →
+                        <span className="text-brand-teal group-hover:translate-x-1 transition-transform flex items-center gap-1">
+                          Ouvir agora
+                          <PlayIcon className="w-4 h-4" />
                         </span>
                       </div>
                     </div>
@@ -220,6 +260,53 @@ export default function PodcastPage() {
           </div>
         </div>
       </div>
+
+      <style jsx global>{`
+        @keyframes audioWave0 {
+          0%, 100% {
+            transform: scaleY(0.3);
+          }
+          50% {
+            transform: scaleY(0.9);
+          }
+        }
+
+        @keyframes audioWave1 {
+          0%, 100% {
+            transform: scaleY(0.5);
+          }
+          50% {
+            transform: scaleY(1);
+          }
+        }
+
+        @keyframes audioWave2 {
+          0%, 100% {
+            transform: scaleY(0.2);
+          }
+          50% {
+            transform: scaleY(0.7);
+          }
+        }
+
+        @keyframes audioWave3 {
+          0%, 100% {
+            transform: scaleY(0.4);
+          }
+          50% {
+            transform: scaleY(0.8);
+          }
+        }
+
+        @keyframes audioWave4 {
+          0%, 100% {
+            transform: scaleY(0.1);
+          }
+          50% {
+            transform: scaleY(0.6);
+          }
+        }
+      `}</style>
     </div>
   );
 } 
