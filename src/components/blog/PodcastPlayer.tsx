@@ -3,6 +3,7 @@
 import { useState, useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { PlayIcon, PauseIcon, SpeakerWaveIcon, SpeakerXMarkIcon, ArrowPathIcon } from '@heroicons/react/24/solid';
+import { LikeButton } from '@/components/LikeButton';
 
 type PodcastPlayerProps = {
   episodeId: string;
@@ -237,6 +238,8 @@ export function PodcastPlayer({ episodeId, title, durationDisplay, audioUrl }: P
                 <span>Episódio {episodeId}</span>
                 <span>•</span>
                 <span>{isFinished ? 'Clique para ouvir novamente' : durationDisplay}</span>
+                <span>•</span>
+                <LikeButton contentId={`podcast_${episodeId}`} type="podcast" />
               </div>
             </div>
           </div>
@@ -248,6 +251,8 @@ export function PodcastPlayer({ episodeId, title, durationDisplay, audioUrl }: P
               <span>Episódio {episodeId}</span>
               <span>•</span>
               <span>{isFinished ? 'Clique para ouvir novamente' : durationDisplay}</span>
+              <span>•</span>
+              <LikeButton contentId={`podcast_${episodeId}`} type="podcast" />
             </div>
           </div>
         </div>

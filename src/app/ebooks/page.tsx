@@ -57,7 +57,7 @@ export default function EbooksPage() {
     <div className="min-h-screen bg-[#0B1221] text-white">
       {/* Hero Section */}
       <div className="relative overflow-hidden">
-        <div className="max-w-7xl mx-auto px-8 py-16 sm:px-10 lg:px-8 lg:py-24">
+        <div className="max-w-7xl mx-auto px-4 py-16 sm:px-10 lg:px-8 lg:py-24">
           <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
             <div className="relative inline-block">
               <h1 className="text-4xl font-bold bg-gradient-brand text-transparent bg-clip-text lg:text-5xl">
@@ -173,7 +173,7 @@ export default function EbooksPage() {
 
       {/* Features Section */}
       <div className="bg-[#0B1221] py-12 sm:py-16 lg:py-24">
-        <div className="max-w-7xl mx-auto px-8 sm:px-10 lg:px-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-10 lg:px-8">
           <div className="text-center mb-12 space-y-4">
             <h2 className="text-2xl font-bold bg-gradient-brand text-transparent bg-clip-text lg:text-4xl">
               Por que nossos e-books são diferentes?

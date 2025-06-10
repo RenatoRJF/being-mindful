@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { ArrowLeftIcon, SparklesIcon, LightBulbIcon, AcademicCapIcon } from '@heroicons/react/24/outline';
 import { BlogPost } from '@/lib/blog-data';
 import { PodcastPlayer } from './PodcastPlayer';
+import { LikeButton } from '@/components/LikeButton';
 
 const getSectionIcon = (type: string) => {
   switch (type) {
@@ -66,6 +67,8 @@ export default function AnimatedBlogContent({ post }: { post: BlogPost }) {
           <span className="text-sm">{formatDate(post.publicationDate)}</span>
           <span className="text-sm">•</span>
           <span className="text-sm">Blog</span>
+          <span className="text-sm">•</span>
+          <LikeButton contentId={post.slug} type="blog" />
         </div>
       </motion.div>
 

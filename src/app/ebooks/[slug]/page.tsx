@@ -129,16 +129,16 @@ export default function EbookPage({ params }: EbookPageProps) {
   }
 
   return (
-    <div className="min-h-screen bg-[#0B1221] text-white">
+    <div className="min-h-screen bg-[#0B1221] text-white pt-20 sm:pt-24">
       {/* Hero Section */}
       <div className="relative overflow-hidden">
-        <div className="max-w-7xl mx-auto px-8 py-8 sm:px-10 lg:px-8 lg:py-16">
+        <div className="max-w-7xl mx-auto px-4 py-8 sm:px-10 lg:px-8 lg:py-16">
           <div className="flex flex-col gap-8 lg:flex-row lg:gap-16 lg:items-center">
             {/* Book Cover - Shown first on mobile */}
             <div className="w-full order-1 lg:order-2 lg:w-1/2">
-              <div className="relative max-w-[280px] mx-auto sm:max-w-md lg:max-w-none">
+              <div className="relative w-full max-w-[320px] mx-auto sm:max-w-md lg:max-w-none">
                 <MotionDiv 
-                  className="relative rounded-2xl p-4 flex items-center justify-center"
+                  className="relative rounded-2xl p-2 sm:p-4 flex items-center justify-center"
                   animate={{
                     y: [0, -4, 0]
                   }}
@@ -151,7 +151,7 @@ export default function EbookPage({ params }: EbookPageProps) {
                   <Image
                     src={ebook.coverImage}
                     alt={`${ebook.title} capa`}
-                    className="w-full h-auto max-h-[400px] lg:max-h-[600px] object-contain"
+                    className="w-full h-auto max-w-full max-h-[450px] object-contain"
                     width={400}
                     height={533}
                     priority
@@ -213,10 +213,10 @@ export default function EbookPage({ params }: EbookPageProps) {
 
               {/* CTAs */}
               <div className="flex flex-col gap-3 sm:flex-row sm:gap-4">
-                <div className="relative inline-flex">
+                <div className="relative inline-flex w-full sm:w-auto">
                   <DiscountBadge discount={ebook.price.discount} />
                   <HoverButton 
-                    className="w-full px-6 py-4 bg-gradient-brand rounded-xl text-base font-semibold sm:w-auto lg:text-lg"
+                    className="w-full px-6 py-4 bg-gradient-brand rounded-xl text-base font-semibold lg:text-lg"
                     onClick={handlePurchaseClick}
                   >
                     <span className="flex flex-col items-center sm:items-start">
@@ -225,18 +225,6 @@ export default function EbookPage({ params }: EbookPageProps) {
                     </span>
                   </HoverButton>
                 </div>
-                <HoverButton 
-                  className="w-full px-6 py-4 bg-slate-800/50 rounded-xl text-base font-semibold sm:w-auto lg:text-lg"
-                  onClick={() => {
-                    gaEvent({
-                      action: 'preview_click',
-                      category: 'Preview',
-                      label: '7 Passos para uma Vida Bem-sucedida'
-                    });
-                  }}
-                >
-                  Ver prévia gratuita
-                </HoverButton>
               </div>
             </div>
           </div>
@@ -245,7 +233,7 @@ export default function EbookPage({ params }: EbookPageProps) {
 
       {/* Benefits Section */}
       <div className="bg-[#0B1221] py-12 sm:py-16 lg:py-24">
-        <div className="max-w-7xl mx-auto px-8 sm:px-10 lg:px-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-10 lg:px-8">
           <div className="text-center mb-10 space-y-3">
             <h2 className="text-2xl font-bold bg-gradient-brand text-transparent bg-clip-text lg:text-4xl">
               Transforme sua vida hoje
@@ -271,7 +259,7 @@ export default function EbookPage({ params }: EbookPageProps) {
 
       {/* Features Section */}
       <div className="bg-[#0B1221] py-12 sm:py-16 lg:py-24">
-        <div className="max-w-7xl mx-auto px-8 sm:px-10 lg:px-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-10 lg:px-8">
           <div className="grid gap-8 lg:grid-cols-2 lg:gap-16 lg:items-center">
             <div>
               <h2 className="text-2xl font-bold mb-6 bg-gradient-brand text-transparent bg-clip-text lg:text-4xl lg:mb-8">
@@ -292,13 +280,26 @@ export default function EbookPage({ params }: EbookPageProps) {
               </div>
             </div>
             <div className="relative">
-              <div className="aspect-video bg-slate-900 rounded-lg overflow-hidden relative">
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <HoverCard className="w-12 h-12 rounded-full bg-brand-teal flex items-center justify-center cursor-pointer lg:w-16 lg:h-16">
-                    <svg className="w-6 h-6 text-white lg:w-8 lg:h-8" fill="currentColor" viewBox="0 0 20 20">
-                      <path d="M6.3 2.841A1.5 1.5 0 004 4.11V15.89a1.5 1.5 0 002.3 1.269l9.344-5.89a1.5 1.5 0 000-2.538L6.3 2.84z" />
-                    </svg>
-                  </HoverCard>
+              <div className="bg-gradient-to-br from-slate-800/50 to-slate-900/50 rounded-xl p-8 lg:p-12 relative overflow-hidden">
+                {/* Decorative elements */}
+                <div className="absolute top-0 left-0 w-24 h-24 bg-gradient-brand opacity-10 blur-2xl rounded-full -translate-x-1/2 -translate-y-1/2" />
+                <div className="absolute bottom-0 right-0 w-32 h-32 bg-gradient-brand opacity-10 blur-2xl rounded-full translate-x-1/2 translate-y-1/2" />
+                
+                {/* Quote content */}
+                <div className="relative">
+                  <svg className="w-12 h-12 text-brand-teal/20 mb-6" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
+                  </svg>
+                  <blockquote className="mb-6">
+                    <p className="text-2xl font-[--font-fraunces] text-white leading-relaxed lg:text-3xl">
+                      &ldquo;A jornada de mil milhas começa com um único passo.&rdquo;
+                    </p>
+                  </blockquote>
+                  <footer className="text-brand-teal font-medium">
+                    <cite className="not-italic">
+                      — Lao Tsé
+                    </cite>
+                  </footer>
                 </div>
               </div>
             </div>
@@ -308,14 +309,19 @@ export default function EbookPage({ params }: EbookPageProps) {
 
       {/* Team Section */}
       <div className="bg-[#0B1221] py-12 sm:py-16 lg:py-24">
-        <div className="max-w-7xl mx-auto px-8 sm:px-10 lg:px-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-10 lg:px-8">
           <div className="relative">
             <div className="relative bg-gradient-to-br from-slate-800/50 to-slate-900/50 rounded-2xl p-6 lg:p-12">
               <div className="flex flex-col items-center gap-6 text-center md:flex-row md:gap-12 md:text-left">
                 <div className="w-32 h-32 rounded-xl bg-gradient-to-br from-slate-900 to-slate-800 flex items-center justify-center shadow-lg lg:w-48 lg:h-48">
-                  <span className="font-[--font-fraunces] text-4xl font-bold bg-gradient-brand text-transparent bg-clip-text tracking-tighter lg:text-6xl">
-                    BM
-                  </span>
+                  <Image
+                    src="/logo.png"
+                    alt="Time Being Mindful"
+                    width={96}
+                    height={96}
+                    className="w-24 h-24 lg:w-36 lg:h-36"
+                    priority
+                  />
                 </div>
                 <div className="flex-1">
                   <div className="mb-3">
@@ -336,7 +342,7 @@ export default function EbookPage({ params }: EbookPageProps) {
 
       {/* CTA Section */}
       <div className="bg-[#0B1221] py-12 sm:py-16 lg:py-24">
-        <div className="max-w-3xl mx-auto px-8 sm:px-10 lg:px-8 text-center">
+        <div className="max-w-3xl mx-auto px-4 sm:px-10 lg:px-8 text-center">
           <span className="inline-block text-brand-teal font-semibold mb-4 px-4 py-2 bg-brand-teal/10 rounded-full border border-brand-teal/20 text-sm lg:text-base">
             Oferta por Tempo Limitado
           </span>

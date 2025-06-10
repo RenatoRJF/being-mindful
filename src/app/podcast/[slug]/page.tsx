@@ -198,12 +198,12 @@ export default function PodcastEpisodePage({ params }: PodcastEpisodePageProps) 
                 transition={{ duration: 0.5, delay: 0.6 }}
                 className="bg-slate-800/50 rounded-xl p-6 mb-12"
               >
-                <h2 className="text-lg font-semibold mb-4 bg-gradient-to-r from-white via-amber-100 to-amber-200 text-transparent bg-clip-text">
+                <h2 className="text-lg font-semibold mb-4 bg-gradient-brand text-transparent bg-clip-text">
                   Conteúdo Relacionado
                 </h2>
                 <Link 
                   href={`/blog/${episode.relatedBlogPost.slug}`}
-                  className="block p-4 bg-amber-500/5 rounded-lg hover:bg-amber-500/10 transition-colors"
+                  className="block p-4 bg-brand-teal/5 rounded-lg hover:bg-brand-teal/10 transition-colors"
                 >
                   <h3 className="text-white font-semibold mb-2 text-base">
                     {episode.relatedBlogPost.title}
@@ -211,7 +211,7 @@ export default function PodcastEpisodePage({ params }: PodcastEpisodePageProps) 
                   <p className="text-slate-300 text-sm">
                     {episode.relatedBlogPost.description}
                   </p>
-                  <span className="inline-flex items-center text-amber-400 text-sm mt-3 group">
+                  <span className="inline-flex items-center text-brand-teal text-sm mt-3 group">
                     Ler artigo
                     <svg
                       className="w-4 h-4 ml-1 transform group-hover:translate-x-1 transition-transform"

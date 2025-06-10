@@ -216,7 +216,7 @@ export default function PodcastPage() {
       <div className="relative py-24 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-[#0D1627] via-slate-900/50 to-[#0B1221]" />
         
-        <div className="max-w-7xl mx-auto px-8 sm:px-10 lg:px-8 relative">
+        <div className="max-w-7xl mx-auto px-4 sm:px-10 lg:px-8 relative">
           <div className="max-w-3xl mx-auto text-center">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
