@@ -13,6 +13,7 @@ interface AnimatedButtonProps {
     alt: string;
   };
   onClick?: (e: React.MouseEvent) => void;
+  openInNewTab?: boolean;
 }
 
 export function AnimatedButton({ 
@@ -20,7 +21,8 @@ export function AnimatedButton({
   children, 
   variant = 'primary',
   icon,
-  onClick
+  onClick,
+  openInNewTab = false
 }: AnimatedButtonProps) {
   const isPrimary = variant === 'primary';
 
@@ -28,8 +30,10 @@ export function AnimatedButton({
     <motion.a
       href={href}
       onClick={onClick}
-      target="_blank"
-      rel="noopener noreferrer"
+      {...openInNewTab ? {
+        target: "_blank",
+        rel: "noopener noreferrer"
+      } : {}}
       className={`
         rounded-full border transition-all duration-300 flex items-center justify-center gap-2 
         font-medium text-sm sm:text-base h-10 sm:h-12 px-6 sm:px-8

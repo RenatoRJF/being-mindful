@@ -1,5 +1,7 @@
 import Link from 'next/link';
 import { EnvelopeIcon } from '@heroicons/react/24/outline';
+import { SocialLinks } from './SocialLinks';
+import { NewsletterForm } from './NewsletterForm';
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
@@ -44,22 +46,7 @@ export function Footer() {
               </div>
 
               <div className="w-full md:w-auto md:min-w-[280px]">
-                <form className="mb-4">
-                  <div className="flex flex-col gap-2">
-                    <input
-                      type="email"
-                      placeholder="Seu e-mail aqui"
-                      className="w-full px-4 py-2.5 bg-slate-800/50 border border-brand-purple/20 rounded-lg text-white placeholder:text-slate-400 focus:outline-none focus:border-brand-teal focus:ring-1 focus:ring-brand-teal/30 transition-all"
-                      required
-                    />
-                    <button
-                      type="submit"
-                      className="w-full px-6 py-2 bg-gradient-brand text-white rounded-lg font-medium hover:opacity-90 transition-opacity"
-                    >
-                      Quero receber
-                    </button>
-                  </div>
-                </form>
+                <NewsletterForm className="mb-4" />
                 <p className="text-sm text-slate-500">
                   Não enviamos spam. Você pode sair da lista quando quiser.
                 </p>
@@ -169,6 +156,9 @@ export function Footer() {
 
         <div className="border-t border-slate-800/60 pt-8">
           <div className="text-center">
+            <div className="mb-8">
+              <SocialLinks />
+            </div>
             <p className="text-sm text-slate-400">
               © {currentYear} Being Mindful. Todos os direitos reservados.
             </p>

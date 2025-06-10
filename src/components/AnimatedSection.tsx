@@ -28,7 +28,7 @@ export function AnimatedSection({
           y: yOffset 
         }}
         whileInView={{ 
-          opacity: 1, 
+          opacity: isDesktop ? 1 : 1, 
           y: 0 
         }}
         exit={{ 

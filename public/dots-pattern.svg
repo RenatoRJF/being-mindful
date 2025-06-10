@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="40" height="40" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+  <!-- Purple dots -->
+  <circle cx="2" cy="2" r="1" fill="#6366F1" />
+  <circle cx="38" cy="38" r="1" fill="#6366F1" />
+  
+  <!-- Teal dots -->
+  <circle cx="38" cy="2" r="1" fill="#2DD4BF" />
+  <circle cx="2" cy="38" r="1" fill="#2DD4BF" />
+  
+  <!-- White dot (center) -->
+  <circle cx="20" cy="20" r="1" fill="#FFFFFF" />
+  
+  <!-- Gray dots -->
+  <circle cx="20" cy="2" r="1" fill="#94A3B8" />
+  <circle cx="2" cy="20" r="1" fill="#94A3B8" />
+  <circle cx="38" cy="20" r="1" fill="#94A3B8" />
+  <circle cx="20" cy="38" r="1" fill="#94A3B8" />
+</svg> 

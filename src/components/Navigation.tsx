@@ -7,6 +7,7 @@ import { Suspense, useEffect, useState } from 'react';
 import { MobileMenu } from './MobileMenu';
 import { ScrollProgress } from './ScrollProgress';
 import Image from 'next/image';
+import { SocialLinks } from './SocialLinks';
 
 function NavigationContent() {
   const pathname = usePathname();
@@ -80,14 +81,7 @@ function NavigationContent() {
             {/* Logo */}
             <div className="flex-shrink-0">
               <Link href="/" className="flex items-center">
-                <Image
-                  src="/logo.png"
-                  alt="Being Mindful"
-                  width={40}
-                  height={40}
-                  className="w-auto h-8"
-                  priority
-                />
+                <Image src="/logo.svg" alt="Logo" width={36} height={36} />
               </Link>
             </div>
 
@@ -139,8 +133,10 @@ function NavigationContent() {
               })}
             </ul>
 
-            {/* Right side spacing for symmetry */}
-            <div className="hidden sm:block flex-shrink-0 w-[40px]" />
+            {/* Social Links */}
+            <div className="hidden sm:block">
+              <SocialLinks className="flex-row" />
+            </div>
           </div>
         </div>
       </nav>
@@ -155,7 +151,7 @@ function NavigationLoading() {
       <div className="max-w-screen-xl mx-auto px-4">
         <div className="flex items-center justify-between h-20">
           <div className="flex-shrink-0">
-            <div className="w-8 h-8 bg-slate-700 rounded animate-pulse" />
+            <div className="w-8 h-8 bg-slate-700/50 rounded-lg animate-pulse" />
           </div>
           <ul className="hidden sm:flex items-center gap-8">
             {[1, 2, 3].map((i) => (
