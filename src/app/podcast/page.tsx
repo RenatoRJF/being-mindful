@@ -212,56 +212,6 @@ export default function PodcastPage() {
         </div>
       </div>
 
-      {/* Subscription Section */}
-      <div className="relative py-24 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-[#0D1627] via-slate-900/50 to-[#0B1221]" />
-        
-        <div className="max-w-7xl mx-auto px-4 sm:px-10 lg:px-8 relative">
-          <div className="max-w-3xl mx-auto text-center">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              className="mb-8"
-            >
-              <h2 className="text-2xl font-bold bg-gradient-brand text-transparent bg-clip-text lg:text-4xl">
-                Fique por dentro das novidades
-              </h2>
-              <p className="mt-4 text-lg text-slate-300">
-                Inscreva-se para receber notificações sobre novos episódios e conteúdos exclusivos
-              </p>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.1 }}
-              className="flex flex-col items-center gap-6"
-            >
-              <form className="w-full max-w-md">
-                <div className="relative">
-                  <input 
-                    type="email" 
-                    placeholder="Seu melhor e-mail" 
-                    className="w-full px-6 py-4 bg-slate-800/50 rounded-xl text-white placeholder-slate-400 border border-slate-700/50 focus:outline-none focus:border-brand-teal/50 focus:ring-1 focus:ring-brand-teal/50"
-                  />
-                  <button 
-                    type="submit"
-                    className="absolute right-2 top-1/2 -translate-y-1/2 px-6 py-2.5 bg-gradient-brand rounded-lg font-medium text-white hover:opacity-90 transition-opacity"
-                  >
-                    Inscrever
-                  </button>
-                </div>
-              </form>
-              <p className="text-sm text-slate-400 text-center">
-                Ao se inscrever, você receberá notificações sobre novos episódios e conteúdos exclusivos. <br />
-                Você pode cancelar sua inscrição a qualquer momento.
-              </p>
-            </motion.div>
-          </div>
-        </div>
-      </div>
-
       <style jsx global>{`
         @keyframes audioWave0 {
           0%, 100% {

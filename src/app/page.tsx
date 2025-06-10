@@ -3,11 +3,25 @@
 import { AnimatedButton } from "@/components/AnimatedButton";
 import { StatsSection } from "@/components/StatsSection";
 import { AnimatedSection } from "@/components/AnimatedSection";
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 
 export default function Home() {
+  const [gradientPosition, setGradientPosition] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrolled = window.scrollY;
+      const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+      const position = (scrolled / maxScroll) * 100;
+      setGradientPosition(position);
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   const scrollToQuemSomos = (e: React.MouseEvent) => {
     e.preventDefault();
     const element = document.getElementById('quem-somos');
@@ -32,21 +46,28 @@ export default function Home() {
   }, []);
 
   return (
-    <main className="min-h-screen flex flex-col bg-[#0B1221]">
-      <div className="flex-grow">
+    <main className="min-h-screen min-w-screen flex flex-col bg-[#0B1221] relative overflow-hidden">
+      {/* Main Background */}
+      <div className="fixed inset-0 w-screen h-screen pointer-events-none">
+        {/* Gradient Background */}
+        <div className="absolute inset-0 w-full h-full bg-gradient-to-b from-brand-purple/10 via-transparent to-brand-teal/5" />
+        
+        {/* Radial Gradient Orbs */}
+        <div className="absolute top-0 left-1/4 w-[800px] h-[800px] bg-gradient-radial from-brand-purple/20 via-brand-purple/5 to-transparent rounded-full blur-3xl" />
+        <div className="absolute bottom-0 right-1/4 w-[600px] h-[600px] bg-gradient-radial from-brand-teal/20 via-brand-teal/5 to-transparent rounded-full blur-3xl" />
+        
+        {/* Dots Pattern */}
+        <div className="absolute inset-0 w-full h-full bg-[url('/dots-pattern.svg')] bg-repeat opacity-[0.15] [mask-image:radial-gradient(ellipse_at_center,white,transparent)]" />
+      </div>
+
+      <div className="flex-grow relative w-full">
         {/* Hero Section */}
-        <div className="relative min-h-screen md:h-screen">
+        <div className="relative min-h-screen md:h-screen w-full">
           <AnimatedSection 
-            className="relative h-full flex items-center justify-center overflow-hidden pb-24 md:pb-0"
+            className="relative h-full w-full flex items-center justify-center overflow-hidden pb-24 md:pb-0"
             direction="up"
           >
-            {/* Background Animation */}
-            <div className="absolute inset-0 opacity-20">
-              <div className="absolute inset-0 bg-gradient-radial from-brand-purple/20 via-transparent to-transparent animate-pulse" />
-              <div className="absolute top-0 left-0 w-full h-full bg-[url('/grid.svg')] bg-repeat opacity-30" />
-            </div>
-
-            <div className="relative z-10 max-w-7xl mx-auto px-6 pt-48 md:pt-56 pb-12 md:pb-24 text-center">
+            <div className="relative z-10 w-full max-w-7xl mx-auto px-6 pt-48 md:pt-56 pb-12 md:pb-24 text-center">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -101,6 +122,7 @@ export default function Home() {
                 <AnimatedButton 
                   href="/blog"
                   variant="secondary"
+                  openInNewTab={false}
                 >
                   Explore nosso conteúdo
                 </AnimatedButton>
@@ -234,7 +256,13 @@ export default function Home() {
                         <div className="group">
                           <div className="flex items-start gap-6">
                             <div className="relative mt-2">
-                              <div className="w-2 h-2 bg-brand-teal rounded-full group-hover:scale-110 transition-transform" />
+                              <div 
+                                className="w-3 h-3 bg-gradient-to-r from-brand-teal/60 via-brand-purple/60 to-brand-teal/60 rounded-full group-hover:scale-110 group-hover:opacity-100 transition-all shadow-[0_0_10px_rgba(45,212,191,0.3)] ring-2 ring-brand-teal/20 opacity-60"
+                                style={{
+                                  backgroundSize: '200% 100%',
+                                  backgroundPosition: `${gradientPosition}% 0`
+                                }}
+                              />
                             </div>
                             <div>
                               <h4 className="text-xl text-white font-medium mb-2 group-hover:text-brand-teal transition-colors">
@@ -250,7 +278,13 @@ export default function Home() {
                         <div className="group">
                           <div className="flex items-start gap-6">
                             <div className="relative mt-2">
-                              <div className="w-2 h-2 bg-brand-teal rounded-full group-hover:scale-110 transition-transform" />
+                              <div 
+                                className="w-3 h-3 bg-gradient-to-r from-brand-teal/60 via-brand-purple/60 to-brand-teal/60 rounded-full group-hover:scale-110 group-hover:opacity-100 transition-all shadow-[0_0_10px_rgba(45,212,191,0.3)] ring-2 ring-brand-teal/20 opacity-60"
+                                style={{
+                                  backgroundSize: '200% 100%',
+                                  backgroundPosition: `${gradientPosition}% 0`
+                                }}
+                              />
                             </div>
                             <div>
                               <h4 className="text-xl text-white font-medium mb-2 group-hover:text-brand-teal transition-colors">
@@ -266,7 +300,13 @@ export default function Home() {
                         <div className="group">
                           <div className="flex items-start gap-6">
                             <div className="relative mt-2">
-                              <div className="w-2 h-2 bg-brand-teal rounded-full group-hover:scale-110 transition-transform" />
+                              <div 
+                                className="w-3 h-3 bg-gradient-to-r from-brand-teal/60 via-brand-purple/60 to-brand-teal/60 rounded-full group-hover:scale-110 group-hover:opacity-100 transition-all shadow-[0_0_10px_rgba(45,212,191,0.3)] ring-2 ring-brand-teal/20 opacity-60"
+                                style={{
+                                  backgroundSize: '200% 100%',
+                                  backgroundPosition: `${gradientPosition}% 0`
+                                }}
+                              />
                             </div>
                             <div>
                               <h4 className="text-xl text-white font-medium mb-2 group-hover:text-brand-teal transition-colors">
@@ -282,7 +322,13 @@ export default function Home() {
                         <div className="group">
                           <div className="flex items-start gap-6">
                             <div className="relative mt-2">
-                              <div className="w-2 h-2 bg-brand-teal rounded-full group-hover:scale-110 transition-transform" />
+                              <div 
+                                className="w-3 h-3 bg-gradient-to-r from-brand-teal/60 via-brand-purple/60 to-brand-teal/60 rounded-full group-hover:scale-110 group-hover:opacity-100 transition-all shadow-[0_0_10px_rgba(45,212,191,0.3)] ring-2 ring-brand-teal/20 opacity-60"
+                                style={{
+                                  backgroundSize: '200% 100%',
+                                  backgroundPosition: `${gradientPosition}% 0`
+                                }}
+                              />
                             </div>
                             <div>
                               <h4 className="text-xl text-white font-medium mb-2 group-hover:text-brand-teal transition-colors">
