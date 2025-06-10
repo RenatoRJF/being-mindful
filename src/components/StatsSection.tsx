@@ -15,20 +15,20 @@ export function StatsSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="text-3xl md:text-4xl font-bold mb-8 bg-gradient-to-r from-white via-amber-100 to-amber-200 text-transparent bg-clip-text"
+            className="text-3xl md:text-4xl font-bold mb-8 bg-gradient-brand text-transparent bg-clip-text"
           >
             Junte-se a Milhares de Entusiastas Diários!
           </motion.h2>
           
           <div className="relative">
-            <div className="absolute -inset-4 bg-gradient-to-r from-amber-500/[0.03] via-amber-500/[0.05] to-amber-500/[0.03] rounded-xl" />
+            <div className="absolute -inset-4 bg-gradient-to-r from-brand-purple/[0.03] via-brand-teal/[0.05] to-brand-purple/[0.03] rounded-xl" />
             
             <motion.div 
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.2 }}
-              className="relative bg-[#0B1221]/60 backdrop-blur-sm p-8 md:p-12 rounded-lg border border-amber-500/10"
+              className="relative bg-[#0B1221]/60 backdrop-blur-sm p-8 md:p-12 rounded-lg border border-brand-purple/10"
             >
               <AnimatedStats 
                 number={25000} 
@@ -57,7 +57,7 @@ export function StatsSection() {
                   Faça parte de uma comunidade que confia no nosso conteúdo e recursos para o sucesso.
                 </p>
                 <div className="flex items-center justify-center gap-2 text-sm text-slate-400">
-                  <span className="w-2 h-2 bg-amber-400 rounded-full animate-pulse"></span>
+                  <span className="w-2 h-2 bg-brand-teal rounded-full animate-pulse"></span>
                   <span>Número atualizado em tempo real</span>
                 </div>
               </motion.div>

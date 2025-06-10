@@ -54,9 +54,9 @@ export default function PodcastEpisodePage({ params }: PodcastEpisodePageProps) 
             >
               <Link
                 href="/podcast"
-                className="inline-flex items-center text-amber-400 hover:text-amber-300 transition-colors group"
+                className="inline-flex items-center text-brand-teal hover:text-brand-teal/80 transition-colors group"
               >
-                <ArrowLeftIcon className="w-4 h-4 mr-2 transform group-hover:-translate-x-1 transition-transform" />
+                <ArrowLeftIcon className="w-4 h-4 mr-2 transform group-hover:-translate-x-1 transition-transform text-brand-teal" />
                 <span>Voltar para episódios</span>
               </Link>
             </motion.div>
@@ -69,19 +69,19 @@ export default function PodcastEpisodePage({ params }: PodcastEpisodePageProps) 
                 transition={{ duration: 0.5 }}
               >
                 <div className="relative">
-                  <h1 className="text-2xl sm:text-3xl font-bold mb-6 bg-gradient-to-r from-white via-amber-100 to-amber-200 text-transparent bg-clip-text lg:text-4xl">
+                  <h1 className="text-2xl sm:text-3xl font-bold mb-6 bg-gradient-brand text-transparent bg-clip-text lg:text-4xl">
                     {episode.title}
                   </h1>
-                  <div className="absolute -bottom-2 left-0 w-1/2 h-[2px] bg-gradient-to-r from-amber-500/50 via-amber-400/50 to-transparent rounded-full" />
+                  <div className="absolute -bottom-2 left-0 w-1/2 h-[2px] bg-gradient-brand opacity-50 rounded-full" />
                 </div>
                 
                 <div className="flex flex-wrap items-center gap-4 text-base text-slate-400 mb-6">
                   <div className="flex items-center gap-2">
-                    <CalendarIcon className="w-5 h-5 text-amber-400" />
+                    <CalendarIcon className="w-5 h-5 text-brand-teal" />
                     <span>{episode.publishDate}</span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <ClockIcon className="w-5 h-5 text-amber-400" />
+                    <ClockIcon className="w-5 h-5 text-brand-teal" />
                     <span>{episode.duration}</span>
                   </div>
                 </div>
@@ -102,7 +102,7 @@ export default function PodcastEpisodePage({ params }: PodcastEpisodePageProps) 
                   {episode.topics.map((topic, index) => (
                     <span
                       key={index}
-                      className="px-3 py-1.5 bg-amber-500/10 text-amber-400 rounded-full text-sm border border-amber-500/20"
+                      className="px-3 py-1.5 bg-brand-teal/10 text-brand-teal rounded-full text-sm border border-brand-teal/20"
                     >
                       {topic}
                     </span>
@@ -142,7 +142,7 @@ export default function PodcastEpisodePage({ params }: PodcastEpisodePageProps) 
 
                 {episode.keyPoints && (
                   <div className="mt-8 bg-gradient-to-b from-slate-800/50 to-slate-800/30 rounded-2xl p-6 sm:p-8 border border-slate-700/50">
-                    <h3 className="text-lg sm:text-xl font-semibold mb-6 bg-gradient-to-r from-white via-amber-100 to-amber-200 text-transparent bg-clip-text">
+                    <h3 className="text-lg sm:text-xl font-semibold mb-6 bg-gradient-brand text-transparent bg-clip-text">
                       Neste episódio, você vai descobrir:
                     </h3>
                     <ul className="space-y-4">
@@ -154,8 +154,8 @@ export default function PodcastEpisodePage({ params }: PodcastEpisodePageProps) 
                           transition={{ duration: 0.5, delay: 0.1 * index }}
                           className="flex items-start gap-3 group"
                         >
-                          <span className="flex-shrink-0 w-6 h-6 rounded-full bg-amber-500/10 border border-amber-500/20 flex items-center justify-center mt-0.5">
-                            <span className="text-amber-400 text-sm group-hover:scale-110 transition-transform">
+                          <span className="flex-shrink-0 w-6 h-6 rounded-full bg-brand-teal/10 border border-brand-teal/20 flex items-center justify-center mt-0.5">
+                            <span className="text-brand-teal text-sm group-hover:scale-110 transition-transform">
                               •
                             </span>
                           </span>
@@ -177,13 +177,13 @@ export default function PodcastEpisodePage({ params }: PodcastEpisodePageProps) 
               transition={{ duration: 0.5, delay: 0.5 }}
               className="bg-slate-800/50 rounded-xl p-6 mb-12"
             >
-              <h2 className="text-lg font-semibold mb-4 bg-gradient-to-r from-white via-amber-100 to-amber-200 text-transparent bg-clip-text">
+              <h2 className="text-lg font-semibold mb-4 bg-gradient-brand text-transparent bg-clip-text">
                 Principais Aprendizados
               </h2>
               <ul className="space-y-3.5">
                 {episode.keyTakeaways.map((takeaway, index) => (
                   <li key={index} className="flex items-start gap-3">
-                    <span className="w-1.5 h-1.5 bg-amber-400 rounded-full mt-2.5" />
+                    <span className="w-1.5 h-1.5 bg-brand-teal rounded-full mt-2.5" />
                     <span className="text-slate-300 text-base">{takeaway}</span>
                   </li>
                 ))}

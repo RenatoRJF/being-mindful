@@ -16,15 +16,15 @@ export function MonogramLogo() {
     >
       <Link href="/">
         <MotionDiv
-          className="w-16 h-16 rounded-xl bg-gradient-to-br from-slate-900 to-slate-800 flex items-center justify-center shadow-lg transition-all duration-300"
+          className="w-16 h-16 rounded-xl bg-gradient-brand shadow-lg transition-all duration-300 hover:shadow-brand-teal/20"
           whileHover={{
             scale: 1.02,
-            boxShadow: '0 0 30px rgba(200,200,200,0.2)',
+            boxShadow: '0 0 30px rgba(45, 212, 191, 0.2)',
           }}
           whileTap={{ scale: 0.98 }}
         >
           <MotionSpan
-            className="font-[--font-fraunces] text-2xl font-bold bg-gradient-to-br from-white via-amber-100 to-amber-200 text-transparent bg-clip-text tracking-tighter"
+            className="font-[--font-fraunces] text-2xl font-bold text-white tracking-tighter flex items-center justify-center h-full"
             initial={{ opacity: 0, scale: 0.5 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{

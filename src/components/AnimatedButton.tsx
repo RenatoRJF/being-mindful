@@ -31,12 +31,12 @@ export function AnimatedButton({
       target="_blank"
       rel="noopener noreferrer"
       className={`
-        rounded-full border border-solid transition-colors flex items-center justify-center gap-2 
+        rounded-full border transition-all duration-300 flex items-center justify-center gap-2 
         font-medium text-sm sm:text-base h-10 sm:h-12 px-6 sm:px-8
         min-w-[180px] sm:min-w-[200px]
         ${isPrimary 
-          ? 'bg-foreground text-background border-transparent hover:bg-[#383838] dark:hover:bg-[#ccc]' 
-          : 'border-black/[.08] dark:border-white/[.145] hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent'
+          ? 'bg-gradient-brand text-white shadow-lg hover:shadow-brand-teal/20 hover:scale-[1.02] border-transparent' 
+          : 'border-slate-300/20 hover:border-brand-teal/30 hover:bg-brand-purple/5'
         }
       `}
       whileHover={{ 
@@ -54,13 +54,14 @@ export function AnimatedButton({
           initial={{ rotate: 0 }}
           whileHover={{ rotate: 360 }}
           transition={{ duration: 0.5, ease: "easeInOut" }}
+          className={isPrimary ? 'text-white' : 'text-brand-purple'}
         >
           <Image
-            className="dark:invert"
             src={icon.src}
             alt={icon.alt}
             width={20}
             height={20}
+            className={!isPrimary ? 'opacity-50' : ''}
           />
         </motion.div>
       )}
@@ -68,6 +69,7 @@ export function AnimatedButton({
         initial={{ y: 0 }}
         whileHover={{ y: -2 }}
         transition={{ duration: 0.2 }}
+        className={!isPrimary ? 'text-slate-300' : ''}
       >
         {children}
       </motion.span>

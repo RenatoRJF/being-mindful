@@ -47,7 +47,7 @@ const HoverCard = ({ children, className = '' }: { children: React.ReactNode; cl
 );
 
 const DiscountBadge = ({ discount }: { discount: string }) => (
-  <div className="absolute -top-2 -right-6 bg-amber-500 text-white px-2 py-1 rounded-lg text-sm font-bold animate-pulse z-10">
+  <div className="absolute -top-2 -right-6 bg-brand-teal text-white px-2 py-1 rounded-lg text-sm font-bold animate-pulse z-10">
     -{discount}
   </div>
 );
@@ -60,10 +60,10 @@ export default function EbooksPage() {
         <div className="max-w-7xl mx-auto px-8 py-16 sm:px-10 lg:px-8 lg:py-24">
           <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
             <div className="relative inline-block">
-              <h1 className="text-4xl font-bold bg-gradient-to-r from-white via-amber-100 to-amber-200 text-transparent bg-clip-text lg:text-5xl">
+              <h1 className="text-4xl font-bold bg-gradient-brand text-transparent bg-clip-text lg:text-5xl">
                 E-books Exclusivos
               </h1>
-              <div className="absolute -bottom-2 left-0 w-1/2 h-[2px] bg-gradient-to-r from-amber-500/50 via-amber-400/50 to-transparent rounded-full" />
+              <div className="absolute -bottom-2 left-0 w-1/2 h-[2px] bg-gradient-brand opacity-50 rounded-full" />
             </div>
             <p className="text-lg text-slate-300 lg:text-xl">
               Conhecimento transformador para impulsionar sua jornada de crescimento pessoal e profissional
@@ -104,10 +104,10 @@ export default function EbooksPage() {
                       <div className="lg:w-1/2 p-8 flex flex-col">
                         <div className="space-y-6">
                           <div className="space-y-2">
-                            <h2 className="text-xl font-semibold bg-gradient-to-r from-white via-amber-100 to-amber-200 text-transparent bg-clip-text lg:text-2xl">
+                            <h2 className="text-xl font-semibold bg-gradient-brand text-transparent bg-clip-text lg:text-2xl">
                               {ebook.title}
                             </h2>
-                            <p className="text-amber-100/80 text-sm lg:text-base">
+                            <p className="text-brand-teal/80 text-sm lg:text-base">
                               {ebook.subtitle}
                             </p>
                           </div>
@@ -120,7 +120,7 @@ export default function EbooksPage() {
                           <div className="space-y-3">
                             {ebook.features.map((feature, index) => (
                               <div key={index} className="flex items-start gap-2">
-                                <div className="flex-shrink-0 w-5 h-5 bg-gradient-to-r from-amber-500 to-orange-500 rounded-full flex items-center justify-center text-xs font-semibold mt-0.5">
+                                <div className="flex-shrink-0 w-5 h-5 bg-gradient-brand rounded-full flex items-center justify-center text-xs font-semibold mt-0.5">
                                   {index + 1}
                                 </div>
                                 <p className="text-sm text-slate-300 lg:text-base">{feature}</p>
@@ -129,7 +129,7 @@ export default function EbooksPage() {
                           </div>
 
                           {/* Audio Preview */}
-                          <div className="flex items-center gap-2 text-amber-400/80 text-sm">
+                          <div className="flex items-center gap-2 text-brand-teal/80 text-sm">
                             <PlayIcon className="w-4 h-4" />
                             <span>Prévia em áudio • {ebook.audioPreview.duration}</span>
                           </div>
@@ -140,10 +140,10 @@ export default function EbooksPage() {
                               <DiscountBadge discount={ebook.price.discount} />
                               <div className="flex flex-col">
                                 <span className="text-sm line-through text-slate-400">{ebook.price.original}</span>
-                                <span className="text-lg font-semibold text-amber-400">{ebook.price.current}</span>
+                                <span className="text-lg font-semibold text-brand-teal">{ebook.price.current}</span>
                               </div>
                             </div>
-                            <div className="text-amber-400 text-sm font-medium group-hover:translate-x-1 transition-transform">
+                            <div className="text-brand-teal text-sm font-medium group-hover:translate-x-1 transition-transform">
                               Ver detalhes
                               <svg
                                 className="ml-2 w-4 h-4 inline-block"
@@ -175,7 +175,7 @@ export default function EbooksPage() {
       <div className="bg-[#0B1221] py-12 sm:py-16 lg:py-24">
         <div className="max-w-7xl mx-auto px-8 sm:px-10 lg:px-8">
           <div className="text-center mb-12 space-y-4">
-            <h2 className="text-2xl font-bold bg-gradient-to-r from-white via-amber-100 to-amber-200 text-transparent bg-clip-text lg:text-4xl">
+            <h2 className="text-2xl font-bold bg-gradient-brand text-transparent bg-clip-text lg:text-4xl">
               Por que nossos e-books são diferentes?
             </h2>
             <p className="text-base text-slate-400 lg:text-xl">
@@ -202,7 +202,7 @@ export default function EbooksPage() {
                 key={index}
                 className="bg-slate-800/50 p-6 rounded-xl cursor-pointer lg:p-8"
               >
-                <h3 className="text-xl font-semibold mb-3 text-amber-100 lg:text-2xl lg:mb-4">
+                <h3 className="text-xl font-semibold mb-3 text-brand-teal lg:text-2xl lg:mb-4">
                   {benefit.title}
                 </h3>
                 <p className="text-base text-slate-300 lg:text-lg">

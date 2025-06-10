@@ -71,7 +71,7 @@ export function AnimatedStats({
       transition={{ duration: 0.5, delay }}
       className="relative"
     >
-      <div className="text-5xl md:text-7xl font-bold text-amber-400 mb-4 tracking-tight">
+      <div className="text-5xl md:text-7xl font-bold text-white mb-4 tracking-tight">
         <span className="inline-block">
           {formatNumber(count)}
           <motion.span
